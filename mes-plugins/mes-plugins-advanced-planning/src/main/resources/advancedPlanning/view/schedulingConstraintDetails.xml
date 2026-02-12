@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="schedulingConstraintDetails">
+        <fields>
+            <field name="name" />
+            <field name="description" />
+            <field name="constraintType" />
+            <field name="priority" />
+            <field name="enabled" />
+            <field name="constraintExpression" />
+            <field name="affectedResources" />
+            <field name="affectedOrders" />
+        </fields>
+        <actions>
+            <action name="save" type="save" />
+            <action name="cancel" type="cancel" />
+            <action name="delete" type="delete" />
+        </actions>
+    </form>
+
+</view>

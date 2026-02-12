@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="energyConsumptionListGrid">
+        <fields>
+            <field name="energyMeter"/>
+            <field name="meterType"/>
+            <field name="consumption"/>
+            <field name="unit"/>
+            <field name="startDate"/>
+            <field name="endDate"/>
+            <field name="location"/>
+            <field name="costCenter"/>
+            <field name="productionOrder"/>
+            <field name="cost"/>
+            <field name="currency"/>
+            <field name="status"/>
+        </fields>
+        <actions>
+            <action name="view" type="view"/>
+            <action name="edit" type="edit"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </grid>
+
+    <form name="energyConsumptionListForm">
+        <fields>
+            <field name="energyMeter" type="text"/>
+            <field name="meterType" type="select"/>
+            <field name="location" type="text"/>
+            <field name="costCenter" type="text"/>
+            <field name="productionOrder" type="text"/>
+            <field name="status" type="select"/>
+            <field name="startDate" type="dateTimeRange"/>
+        </fields>
+        <actions>
+            <action name="search" type="search"/>
+            <action name="reset" type="reset"/>
+            <action name="add" type="add"/>
+        </actions>
+    </form>
+
+</view>

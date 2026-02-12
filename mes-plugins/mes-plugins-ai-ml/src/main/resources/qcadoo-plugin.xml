@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="aiMl" group="aiMl" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Artificial Intelligence &amp; Machine Learning</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Artificial intelligence and machine learning functionality including predictive analysis, anomaly detection, and quality prediction</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_AI_ML"/>
+        
+        <model:model model="predictionModel" resource="aiMl/model/predictionModel.xml"/>
+        <model:model model="anomalyDetection" resource="aiMl/model/anomalyDetection.xml"/>
+        <model:model model="qualityPrediction" resource="aiMl/model/qualityPrediction.xml"/>
+        <model:model model="aiMlParameter" resource="aiMl/model/aiMlParameter.xml"/>
+        
+        <menu:menu-category name="aiMl" defaultAuthorizationRole="ROLE_AI_ML"/>
+        
+        <menu:menu-item name="predictionModelsList" category="aiMl" view="predictionModelsList" defaultAuthorizationRole="ROLE_AI_ML"/>
+        <menu:menu-item name="anomalyDetectionList" category="aiMl" view="anomalyDetectionList" defaultAuthorizationRole="ROLE_AI_ML"/>
+        <menu:menu-item name="qualityPredictionsList" category="aiMl" view="qualityPredictionsList" defaultAuthorizationRole="ROLE_AI_ML"/>
+        <menu:menu-item name="aiMlParameters" category="aiMl" view="aiMlParameters" defaultAuthorizationRole="ROLE_AI_ML"/>
+        
+        <view:view resource="aiMl/view/predictionModelsList.xml"/>
+        <view:view resource="aiMl/view/predictionModelDetails.xml"/>
+        <view:view resource="aiMl/view/anomalyDetectionList.xml"/>
+        <view:view resource="aiMl/view/anomalyDetectionDetails.xml"/>
+        <view:view resource="aiMl/view/qualityPredictionsList.xml"/>
+        <view:view resource="aiMl/view/qualityPredictionDetails.xml"/>
+        <view:view resource="aiMl/view/aiMlParameters.xml"/>
+        
+        <custom:custom class="com.qcadoo.mes.aiMl.AiMlOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

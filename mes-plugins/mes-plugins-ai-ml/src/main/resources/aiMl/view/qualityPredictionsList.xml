@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="qualityPredictionsList">
+        <fields>
+            <field name="name" />
+            <field name="description" />
+            <field name="product" />
+            <field name="predictionModel" />
+            <field name="predictedQuality" />
+            <field name="confidence" />
+            <field name="predictionDate" />
+            <field name="actualQuality" />
+            <field name="accuracy" />
+            <field name="isActive" />
+        </fields>
+        <actions>
+            <action name="view" type="view" />
+            <action name="edit" type="edit" />
+            <action name="delete" type="delete" />
+        </actions>
+    </grid>
+
+</view>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="resourceAllocationDetails">
+        <fields>
+            <field name="productionPlan" />
+            <field name="resource" />
+            <field name="startDate" />
+            <field name="endDate" />
+            <field name="allocationType" />
+            <field name="status" />
+            <field name="utilization" />
+            <field name="productionOrder" />
+            <field name="operation" />
+            <field name="notes" />
+        </fields>
+        <actions>
+            <action name="save" type="save" />
+            <action name="cancel" type="cancel" />
+            <action name="delete" type="delete" />
+        </actions>
+    </form>
+
+</view>

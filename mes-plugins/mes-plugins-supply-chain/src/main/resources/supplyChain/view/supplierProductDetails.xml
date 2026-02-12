@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/view.xsd">
+
+    <page name="supplierProductDetails" extensionOf="form">
+        <form name="supplierProductForm" entity="supplierProduct">
+            <fields>
+                <field name="supplier" required="true"/>
+                <field name="product" required="true"/>
+                <field name="productCode"/>
+                <field name="supplierProductCode"/>
+                <field name="unitPrice" required="true"/>
+                <field name="currency" required="true"/>
+                <field name="minOrderQuantity"/>
+                <field name="maxOrderQuantity"/>
+                <field name="leadTime"/>
+                <field name="qualityRating"/>
+                <field name="deliveryRating"/>
+                <field name="status" required="true"/>
+                <field name="notes" type="textarea"/>
+            </fields>
+            <toolbar>
+                <button name="save" action="save"/>
+                <button name="cancel" action="navigateTo" params="{view: 'supplierProductList'}"/>
+                <button name="delete" action="delete" condition="idSet"/>
+            </toolbar>
+        </form>
+    </page>
+
+</view>

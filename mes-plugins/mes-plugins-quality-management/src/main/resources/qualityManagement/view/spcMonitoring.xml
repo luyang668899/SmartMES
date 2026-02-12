@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <page>
+        <title>SPC Monitoring</title>
+
+        <form>
+            <grid>
+                <fields>
+                    <field name="qualityControl" lookup="true" filter="true"/>
+                    <field name="parameterName" lookup="true" filter="true"/>
+                    <field name="product" lookup="true" filter="true" plugin="basic"/>
+                    <field name="workstation" lookup="true" filter="true" plugin="basic"/>
+                    <field name="machine" lookup="true" filter="true" plugin="equipmentConnection"/>
+                    <field name="fromDate" type="date"/>
+                    <field name="toDate" type="date"/>
+                </fields>
+            </grid>
+        </form>
+
+        <chart name="spcChart" type="line" height="400">
+            <datasource model="spcData"/>
+            <categories field="sampleNumber"/>
+            <series>
+                <series name="Measurement" field="dataValue" color="#3498db"/>
+                <series name="UCL" field="upperControlLimit" color="#e74c3c" type="line"/>
+                <series name="LCL" field="lowerControlLimit" color="#e74c3c" type="line"/>
+                <series name="Target" field="targetValue" color="#27ae60" type="line"/>
+            </series>
+        </chart>
+
+        <table name="spcData" model="spcData" view="tree">
+            <actions>
+                <action name="refresh"/>
+                <action name="export"/>
+            </actions>
+
+            <columns>
+                <column name="qualityControl" sortable="true"/>
+                <column name="parameterName" sortable="true"/>
+                <column name="sampleNumber" sortable="true"/>
+                <column name="dataValue" sortable="true">
+                    <format type="number" pattern="#.##"/>
+                </column>
+                <column name="timestamp" sortable="true"/>
+                <column name="operator"/>
+                <column name="machine" plugin="equipmentConnection"/>
+                <column name="workstation"/>
+                <column name="isOutOfControl" type="boolean"/>
+                <column name="upperControlLimit">
+                    <format type="number" pattern="#.##"/>
+                </column>
+                <column name="lowerControlLimit">
+                    <format type="number" pattern="#.##"/>
+                </column>
+                <column name="targetValue">
+                    <format type="number" pattern="#.##"/>
+                </column>
+            </columns>
+
+            <rightFragments>
+                <fragment name="gridSize"/>
+                <fragment name="refreshInterval"/>
+                <fragment name="export"/>
+            </rightFragments>
+
+        </table>
+
+    </page>
+
+</view>

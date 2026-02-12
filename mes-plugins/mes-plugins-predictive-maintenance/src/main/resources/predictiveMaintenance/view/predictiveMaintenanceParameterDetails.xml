@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://www.qcadoo.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.qcadoo.com/model view.xsd">
+    <page>
+        <title>Predictive Maintenance Parameter Details</title>
+        <form name="predictiveMaintenanceParameterForm" entity="predictiveMaintenance.predictiveMaintenanceParameter">
+            <fields>
+                <field name="parameter" type="string" required="true"/>
+                <field name="value" type="string" required="true"/>
+                <field name="description" type="text"/>
+                <field name="active" type="boolean"/>
+            </fields>
+            <actions>
+                <action name="save" type="save"/>
+                <action name="cancel" type="navigate" url="/page/predictiveMaintenance/predictiveMaintenanceParameters.html"/>
+            </actions>
+        </form>
+    </page>
+</view>

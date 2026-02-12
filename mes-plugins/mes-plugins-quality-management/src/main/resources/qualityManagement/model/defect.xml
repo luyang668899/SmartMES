@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>qualityManagement.defect.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="defectType" type="manyToOne" model="defectType" required="true"/>
+
+        <field name="qualityControl" type="manyToOne" model="qualityControl"/>
+
+        <field name="productionOrder" type="manyToOne" model="order" plugin="orders" required="true"/>
+
+        <field name="product" type="manyToOne" model="product" plugin="basic" required="true"/>
+
+        <field name="batchNumber" type="string"/>
+
+        <field name="detectionDate" type="dateTime" required="true" default="now"/>
+
+        <field name="detectedBy" type="manyToOne" model="staff" plugin="basic" required="true"/>
+
+        <field name="shift" type="manyToOne" model="shift" plugin="basic"/>
+
+        <field name="workstation" type="manyToOne" model="workstation" plugin="basic"/>
+
+        <field name="machine" type="manyToOne" model="equipment" plugin="equipmentConnection"/>
+
+        <field name="description" type="text" required="true"/>
+
+        <field name="severity" type="integer" required="true">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1</parameter>
+                    <parameter name="max">5</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="status" type="string" required="true" default="OPEN">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">OPEN,IN_INVESTIGATION,IN_REPAIR,REPAIRED,REJECTED,CLOSED</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="quantityAffected" type="integer" default="1"/>
+
+        <field name="isCritical" type="boolean" default="false"/>
+
+        <field name="rootCause" type="text"/>
+
+        <field name="correctiveAction" type="text"/>
+
+        <field name="preventiveAction" type="text"/>
+
+        <field name="repairCost" type="decimal"/>
+
+        <field name="repairTime" type="integer"/>
+
+        <field name="closedDate" type="dateTime"/>
+
+        <field name="closedBy" type="manyToOne" model="staff" plugin="basic"/>
+
+        <field name="attachments" type="text"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="defectType"/>
+            <field name="productionOrder"/>
+            <field name="product"/>
+            <field name="detectionDate"/>
+            <field name="status"/>
+            <field name="severity"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="defectType"/>
+            <field name="qualityControl"/>
+            <field name="productionOrder"/>
+            <field name="product"/>
+            <field name="batchNumber"/>
+            <field name="detectionDate"/>
+            <field name="detectedBy"/>
+            <field name="shift"/>
+            <field name="workstation"/>
+            <field name="machine"/>
+            <field name="description"/>
+            <field name="severity"/>
+            <field name="status"/>
+            <field name="quantityAffected"/>
+            <field name="isCritical"/>
+            <field name="rootCause"/>
+            <field name="correctiveAction"/>
+            <field name="preventiveAction"/>
+            <field name="repairCost"/>
+            <field name="repairTime"/>
+            <field name="closedDate"/>
+            <field name="closedBy"/>
+            <field name="attachments"/>
+        </view>
+
+    </views>
+
+</model>

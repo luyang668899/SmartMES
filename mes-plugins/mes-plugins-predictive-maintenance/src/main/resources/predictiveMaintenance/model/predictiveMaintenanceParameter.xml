@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.qcadoo.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.qcadoo.com/model model.xsd">
+    <entities>
+        <entity name="predictiveMaintenanceParameter" package="com.qcadoo.mes.predictiveMaintenance" extends="basic">
+            <fields>
+                <field name="parameter" type="string" required="true" unique="true">
+                    <constraints>
+                        <notBlank/>
+                    </constraints>
+                </field>
+                <field name="value" type="string" required="true">
+                    <constraints>
+                        <notBlank/>
+                    </constraints>
+                </field>
+                <field name="description" type="text"/>
+                <field name="active" type="boolean" default="true"/>
+            </fields>
+        </entity>
+    </entities>
+</model>

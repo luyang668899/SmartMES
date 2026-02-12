@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="systemIntegrationParameter" package="systemIntegration" singleton="true">
+        <field name="id" type="id"/>
+        
+        <!-- 连接参数 -->
+        <field name="connectionTimeout" type="integer" defaultValue="30">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="readTimeout" type="integer" defaultValue="60">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="maxConnections" type="integer" defaultValue="10">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 日志参数 -->
+        <field name="logLevel" type="string" length="50" defaultValue="INFO">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>INFO</value>
+                    <value>WARN</value>
+                    <value>ERROR</value>
+                    <value>DEBUG</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="logRetentionDays" type="integer" defaultValue="30">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 安全参数 -->
+        <field name="enableSslValidation" type="boolean" defaultValue="true"/>
+        <field name="enableBasicAuth" type="boolean" defaultValue="true"/>
+        <field name="apiKeyHeader" type="string" length="255" defaultValue="X-API-Key"/>
+        
+        <!-- 批处理参数 -->
+        <field name="batchSize" type="integer" defaultValue="100">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="maxRetries" type="integer" defaultValue="3">
+            <validations>
+                <min value="0"/>
+            </validations>
+        </field>
+        <field name="retryDelay" type="integer" defaultValue="5">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 系统参数 -->
+        <field name="enableRealTimeIntegration" type="boolean" defaultValue="false"/>
+        <field name="enableEmailNotifications" type="boolean" defaultValue="true"/>
+        <field name="notificationEmail" type="string" length="255"/>
+        
+        <!-- 审计字段 -->
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="connectionTimeout" label="systemIntegration.systemIntegrationParameter.field.connectionTimeout"/>
+                <field name="readTimeout" label="systemIntegration.systemIntegrationParameter.field.readTimeout"/>
+                <field name="maxConnections" label="systemIntegration.systemIntegrationParameter.field.maxConnections"/>
+                <field name="logLevel" label="systemIntegration.systemIntegrationParameter.field.logLevel"/>
+                <field name="logRetentionDays" label="systemIntegration.systemIntegrationParameter.field.logRetentionDays"/>
+                <field name="enableSslValidation" label="systemIntegration.systemIntegrationParameter.field.enableSslValidation"/>
+                <field name="enableBasicAuth" label="systemIntegration.systemIntegrationParameter.field.enableBasicAuth"/>
+                <field name="apiKeyHeader" label="systemIntegration.systemIntegrationParameter.field.apiKeyHeader"/>
+                <field name="batchSize" label="systemIntegration.systemIntegrationParameter.field.batchSize"/>
+                <field name="maxRetries" label="systemIntegration.systemIntegrationParameter.field.maxRetries"/>
+                <field name="retryDelay" label="systemIntegration.systemIntegrationParameter.field.retryDelay"/>
+                <field name="enableRealTimeIntegration" label="systemIntegration.systemIntegrationParameter.field.enableRealTimeIntegration"/>
+                <field name="enableEmailNotifications" label="systemIntegration.systemIntegrationParameter.field.enableEmailNotifications"/>
+                <field name="notificationEmail" label="systemIntegration.systemIntegrationParameter.field.notificationEmail"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

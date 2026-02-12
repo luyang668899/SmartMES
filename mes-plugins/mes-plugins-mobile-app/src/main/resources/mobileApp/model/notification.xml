@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="title" type="string" required="true"/>
+        <field name="message" type="text" required="true"/>
+        <field name="notificationType" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Information</list>
+                    <list>Warning</list>
+                    <list>Error</list>
+                    <list>Success</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="priority" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Low</list>
+                    <list>Medium</list>
+                    <list>High</list>
+                    <list>Emergency</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="recipient" type="string" required="true"/>
+        <field name="deviceId" type="string"/>
+        <field name="sentAt" type="dateTime" required="true"/>
+        <field name="deliveredAt" type="dateTime"/>
+        <field name="readAt" type="dateTime"/>
+        <field name="status" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Pending</list>
+                    <list>Delivered</list>
+                    <list>Read</list>
+                    <list>Failed</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="relatedEntity" type="string"/>
+        <field name="relatedEntityId" type="integer"/>
+        <field name="actionRequired" type="boolean"/>
+        <field name="actionTaken" type="boolean"/>
+        <field name="notes" type="text"/>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="title"/>
+            <field name="notificationType"/>
+            <field name="priority"/>
+            <field name="recipient"/>
+            <field name="sentAt"/>
+            <field name="status"/>
+        </view>
+        <view name="form">
+            <field name="title"/>
+            <field name="message"/>
+            <field name="notificationType"/>
+            <field name="priority"/>
+            <field name="recipient"/>
+            <field name="deviceId"/>
+            <field name="sentAt"/>
+            <field name="deliveredAt"/>
+            <field name="readAt"/>
+            <field name="status"/>
+            <field name="relatedEntity"/>
+            <field name="relatedEntityId"/>
+            <field name="actionRequired"/>
+            <field name="actionTaken"/>
+            <field name="notes"/>
+        </view>
+    </views>
+
+</model>

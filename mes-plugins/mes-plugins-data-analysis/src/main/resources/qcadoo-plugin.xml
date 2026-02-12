@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="dataAnalysis" group="dataAnalysis" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Data Analysis</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Data analysis and decision support functionality including BI and KPI dashboards</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>supplyChain</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>qualityManagement</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_DATA_ANALYSIS"/>
+        
+        <model:model model="dashboard" resource="dataAnalysis/model/dashboard.xml"/>
+        <model:model model="kpiMetric" resource="dataAnalysis/model/kpiMetric.xml"/>
+        <model:model model="reportTemplate" resource="dataAnalysis/model/reportTemplate.xml"/>
+        <model:model model="dataAnalysisParameter" resource="dataAnalysis/model/dataAnalysisParameter.xml"/>
+        
+        <menu:menu-category name="dataAnalysis" defaultAuthorizationRole="ROLE_DATA_ANALYSIS"/>
+        
+        <menu:menu-item name="dashboardsList" category="dataAnalysis" view="dashboardsList" defaultAuthorizationRole="ROLE_DATA_ANALYSIS"/>
+        <menu:menu-item name="kpiMetricsList" category="dataAnalysis" view="kpiMetricsList" defaultAuthorizationRole="ROLE_DATA_ANALYSIS"/>
+        <menu:menu-item name="reportTemplatesList" category="dataAnalysis" view="reportTemplatesList" defaultAuthorizationRole="ROLE_DATA_ANALYSIS"/>
+        <menu:menu-item name="dataAnalysisParameters" category="dataAnalysis" view="dataAnalysisParameters" defaultAuthorizationRole="ROLE_DATA_ANALYSIS"/>
+        
+        <view:view resource="dataAnalysis/view/dashboardsList.xml"/>
+        <view:view resource="dataAnalysis/view/dashboardDetails.xml"/>
+        <view:view resource="dataAnalysis/view/kpiMetricsList.xml"/>
+        <view:view resource="dataAnalysis/view/kpiMetricDetails.xml"/>
+        <view:view resource="dataAnalysis/view/reportTemplatesList.xml"/>
+        <view:view resource="dataAnalysis/view/reportTemplateDetails.xml"/>
+        <view:view resource="dataAnalysis/view/dataAnalysisParameters.xml"/>
+        
+        <custom:custom class="com.qcadoo.mes.dataAnalysis.DataAnalysisOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

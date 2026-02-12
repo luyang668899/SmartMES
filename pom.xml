@@ -46,6 +46,8 @@
         <qcadoo.plugin.version>1.5</qcadoo.plugin.version>
         <qcadoo.maven.plugin.version>1.5-SNAPSHOT</qcadoo.maven.plugin.version>
         <profile.name>tomcat</profile.name>
+        <aspectj.maven.plugin.version>1.14.0</aspectj.maven.plugin.version>
+        <aspectj.version>1.9.22</aspectj.version>
     </properties>
 
     <dependencies>
@@ -124,9 +126,9 @@
                 <artifactId>aspectj-maven-plugin</artifactId>
                 <version>${aspectj.maven.plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <complianceLevel>1.8</complianceLevel>
+                    <source>25</source>
+                    <target>25</target>
+                    <complianceLevel>25</complianceLevel>
                     <aspectLibraries>
                         <aspectLibrary>
                             <groupId>org.springframework</groupId>
@@ -138,6 +140,7 @@
                         </aspectLibrary>
                     </aspectLibraries>
                     <showWeaveInfo>true</showWeaveInfo>
+                    <Xlint>ignore</Xlint>
                 </configuration>
                 <dependencies>
                     <dependency>

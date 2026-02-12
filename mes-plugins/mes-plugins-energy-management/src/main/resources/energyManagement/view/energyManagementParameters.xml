@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="energyManagementParametersForm">
+        <fields>
+            <field name="enableEnergyManagement" type="boolean" required="true"/>
+            <field name="enableEnergyMeters" type="boolean" required="true"/>
+            <field name="enableEnergyConsumptionTracking" type="boolean" required="true"/>
+            <field name="enableEnergyTariffs" type="boolean" required="true"/>
+            <field name="enableEnergyReports" type="boolean" required="true"/>
+            <field name="enableRealTimeMonitoring" type="boolean"/>
+            <field name="enableAnomalyDetection" type="boolean"/>
+            <field name="enableEnergyOptimization" type="boolean"/>
+            <field name="enableCarbonFootprintCalculation" type="boolean"/>
+            <field name="dataCollectionInterval" type="integer" required="true"/>
+            <field name="reportGenerationInterval" type="select" required="true">
+                <option>Daily</option>
+                <option>Weekly</option>
+                <option>Monthly</option>
+                <option>Quarterly</option>
+                <option>Annual</option>
+            </field>
+            <field name="defaultCurrency" type="text" required="true"/>
+            <field name="defaultElectricityUnit" type="text" required="true"/>
+            <field name="defaultGasUnit" type="text" required="true"/>
+            <field name="defaultWaterUnit" type="text" required="true"/>
+            <field name="defaultSteamUnit" type="text" required="true"/>
+            <field name="defaultCompressedAirUnit" type="text" required="true"/>
+            <field name="maxHistoricalDataMonths" type="integer" required="true"/>
+            <field name="alertThreshold" type="decimal"/>
+            <field name="anomalyDetectionThreshold" type="decimal"/>
+            <field name="enableEmailNotifications" type="boolean"/>
+            <field name="notificationEmail" type="text"/>
+            <field name="apiKey" type="text"/>
+            <field name="apiUrl" type="text"/>
+            <field name="debugMode" type="boolean"/>
+            <field name="notes" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+        </actions>
+    </form>
+
+</view>

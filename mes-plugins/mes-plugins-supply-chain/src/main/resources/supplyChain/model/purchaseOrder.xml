@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>supplyChain.purchaseOrder.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="name" type="string" required="true">
+            <message>
+                <key>supplyChain.purchaseOrder.name.error.empty</key>
+                <message>Name cannot be empty</message>
+            </message>
+        </field>
+
+        <field name="supplier" type="manyToOne" model="supplier" required="true"/>
+
+        <field name="purchaseRequest" type="manyToOne" model="purchaseRequest"/>
+
+        <field name="orderDate" type="dateTime" required="true" default="now"/>
+
+        <field name="deliveryDate" type="date" required="true"/>
+
+        <field name="status" type="string" required="true" default="DRAFT">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">DRAFT,PENDING_APPROVAL,APPROVED,REJECTED,IN_PROCESS,DELIVERED,INVOICED,PAID,CANCELLED</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="currency" type="manyToOne" model="currency" plugin="basic"/>
+
+        <field name="exchangeRate" type="decimal"/>
+
+        <field name="subtotalAmount" type="decimal"/>
+
+        <field name="taxAmount" type="decimal"/>
+
+        <field name="totalAmount" type="decimal" required="true"/>
+
+        <field name="paymentTerms" type="string"/>
+
+        <field name="shippingTerms" type="string"/>
+
+        <field name="shippingAddress" type="manyToOne" model="address" plugin="basic"/>
+
+        <field name="billingAddress" type="manyToOne" model="address" plugin="basic"/>
+
+        <field name="notes" type="text"/>
+
+        <field name="approvedBy" type="manyToOne" model="staff" plugin="basic"/>
+
+        <field name="approvalDate" type="dateTime"/>
+
+        <field name="relatedProductionOrder" type="manyToOne" model="order" plugin="orders"/>
+
+        <field name="createdBy" type="manyToOne" model="staff" plugin="basic" required="true"/>
+
+        <field name="lastModifiedBy" type="manyToOne" model="staff" plugin="basic"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="supplier"/>
+            <field name="orderDate"/>
+            <field name="deliveryDate"/>
+            <field name="status"/>
+            <field name="totalAmount"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="supplier"/>
+            <field name="purchaseRequest"/>
+            <field name="orderDate"/>
+            <field name="deliveryDate"/>
+            <field name="status"/>
+            <field name="currency"/>
+            <field name="exchangeRate"/>
+            <field name="subtotalAmount"/>
+            <field name="taxAmount"/>
+            <field name="totalAmount"/>
+            <field name="paymentTerms"/>
+            <field name="shippingTerms"/>
+            <field name="shippingAddress"/>
+            <field name="billingAddress"/>
+            <field name="notes"/>
+            <field name="approvedBy"/>
+            <field name="approvalDate"/>
+            <field name="relatedProductionOrder"/>
+            <field name="createdBy"/>
+            <field name="lastModifiedBy"/>
+        </view>
+
+    </views>
+
+</model>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="digitalTwinModel" package="digitalTwin">
+        <field name="id" type="id"/>
+        <field name="name" type="string" length="255" required="true"/>
+        <field name="description" type="string" length="1000"/>
+        <field name="modelType" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>EQUIPMENT</value>
+                    <value>PRODUCTION_LINE</value>
+                    <value>FACTORY</value>
+                    <value>SUPPLY_CHAIN</value>
+                    <value>CUSTOM</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="modelPath" type="string" length="500" required="true"/>
+        <field name="modelFormat" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>STEP</value>
+                    <value>IGES</value>
+                    <value>STL</value>
+                    <value>GLTF</value>
+                    <value>OBJ</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="scale" type="decimal" scale="2" defaultValue="1.0"/>
+        <field name="version" type="string" length="50" required="true"/>
+        <field name="lastUpdated" type="dateTime"/>
+        <field name="status" type="string" length="50" required="true" defaultValue="ACTIVE">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>ACTIVE</value>
+                    <value>INACTIVE</value>
+                    <value>UNDER_MAINTENANCE</value>
+                    <value>ARCHIVED</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="linkedEquipment" type="string" length="255"/>
+        <field name="linkedProductionLine" type="string" length="255"/>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="versionNumber" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="modelType"/>
+                <field name="modelPath"/>
+                <field name="modelFormat"/>
+                <field name="scale"/>
+                <field name="version"/>
+                <field name="lastUpdated"/>
+                <field name="status"/>
+                <field name="linkedEquipment"/>
+                <field name="linkedProductionLine"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

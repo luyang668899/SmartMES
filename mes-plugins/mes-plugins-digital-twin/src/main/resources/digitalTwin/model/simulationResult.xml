@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="simulationResult" package="digitalTwin">
+        <field name="id" type="id"/>
+        <field name="scenario" type="manyToOne" manyToOne="simulationScenario" required="true"/>
+        <field name="runNumber" type="integer" required="true"/>
+        <field name="startTime" type="dateTime" required="true"/>
+        <field name="endTime" type="dateTime" required="true"/>
+        <field name="duration" type="integer"/>
+        <field name="status" type="string" length="50" required="true" defaultValue="COMPLETED">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>COMPLETED</value>
+                    <value>FAILED</value>
+                    <value>PARTIAL</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="results" type="string" length="4000" required="true"/>
+        <field name="metrics" type="string" length="4000"/>
+        <field name="logs" type="string" length="4000"/>
+        <field name="errorMessage" type="string" length="4000"/>
+        <field name="filePath" type="string" length="500"/>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="scenario"/>
+                <field name="runNumber"/>
+                <field name="startTime"/>
+                <field name="endTime"/>
+                <field name="duration"/>
+                <field name="status"/>
+                <field name="results"/>
+                <field name="metrics"/>
+                <field name="logs"/>
+                <field name="errorMessage"/>
+                <field name="filePath"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

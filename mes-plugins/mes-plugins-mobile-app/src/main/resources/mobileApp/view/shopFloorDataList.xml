@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="shopFloorDataListGrid">
+        <fields>
+            <field name="order"/>
+            <field name="operation"/>
+            <field name="workstation"/>
+            <field name="operator"/>
+            <field name="dataType"/>
+            <field name="value"/>
+            <field name="unit"/>
+            <field name="timestamp"/>
+            <field name="deviceId"/>
+            <field name="status"/>
+        </fields>
+        <actions>
+            <action name="view" type="view"/>
+            <action name="edit" type="edit"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </grid>
+
+    <form name="shopFloorDataListForm">
+        <fields>
+            <field name="order" type="text"/>
+            <field name="operation" type="text"/>
+            <field name="workstation" type="text"/>
+            <field name="operator" type="text"/>
+            <field name="dataType" type="select"/>
+            <field name="deviceId" type="text"/>
+            <field name="status" type="select"/>
+            <field name="timestamp" type="datetimeRange"/>
+        </fields>
+        <actions>
+            <action name="search" type="search"/>
+            <action name="reset" type="reset"/>
+            <action name="add" type="add"/>
+        </actions>
+    </form>
+
+</view>

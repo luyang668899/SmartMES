@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="shopFloorDataDetailsForm">
+        <fields>
+            <field name="order" type="text" required="true"/>
+            <field name="operation" type="text" required="true"/>
+            <field name="workstation" type="text" required="true"/>
+            <field name="operator" type="text" required="true"/>
+            <field name="dataType" type="select" required="true">
+                <option>Production Count</option>
+                <option>Quality Check</option>
+                <option>Maintenance</option>
+                <option>Material Consumption</option>
+                <option>Downtime</option>
+            </field>
+            <field name="value" type="text" required="true"/>
+            <field name="unit" type="text"/>
+            <field name="timestamp" type="datetime" required="true"/>
+            <field name="deviceId" type="text" required="true"/>
+            <field name="location" type="text"/>
+            <field name="status" type="select" required="true">
+                <option>Recorded</option>
+                <option>Processed</option>
+                <option>Error</option>
+            </field>
+            <field name="notes" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </form>
+
+</view>

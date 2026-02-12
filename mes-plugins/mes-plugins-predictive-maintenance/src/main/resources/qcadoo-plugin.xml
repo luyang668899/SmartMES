@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <identifier>predictiveMaintenance</identifier>
+    <name>Predictive Maintenance</name>
+    <version>1.5-SNAPSHOT</version>
+    <description>Plugin for predictive maintenance functionality</description>
+    <provider>Qcadoo</provider>
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+        </dependency>
+        <dependency>
+            <plugin>states</plugin>
+        </dependency>
+        <dependency>
+            <plugin>productionLines</plugin>
+        </dependency>
+    </dependencies>
+    <processing>
+        <onStartup>
+            <listener class="com.qcadoo.mes.predictiveMaintenance.PredictiveMaintenanceOnStartupService" method="onStartup"/>
+        </onStartup>
+    </processing>
+</plugin>

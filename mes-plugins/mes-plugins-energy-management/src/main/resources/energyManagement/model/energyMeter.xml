@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="name" type="string" required="true"/>
+        <field name="meterId" type="string" required="true" unique="true"/>
+        <field name="meterType" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Electricity</list>
+                    <list>Gas</list>
+                    <list>Water</list>
+                    <list>Steam</list>
+                    <list>Compressed Air</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="installationDate" type="date" required="true"/>
+        <field name="location" type="string" required="true"/>
+        <field name="status" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Active</list>
+                    <list>Inactive</list>
+                    <list>Maintenance</list>
+                    <list>Out of Service</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="lastReading" type="decimal"/>
+        <field name="lastReadingDate" type="dateTime"/>
+        <field name="unit" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>kWh</list>
+                    <list>M3</list>
+                    <list>L</list>
+                    <list>kg</list>
+                    <list>Nm3</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="manufacturer" type="string"/>
+        <field name="model" type="string"/>
+        <field name="serialNumber" type="string"/>
+        <field name="communicationProtocol" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Modbus</list>
+                    <list>MQTT</list>
+                    <list>OPC UA</list>
+                    <list>BACnet</list>
+                    <list>Manual</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="ipAddress" type="string"/>
+        <field name="port" type="integer"/>
+        <field name="notes" type="text"/>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="name"/>
+            <field name="meterId"/>
+            <field name="meterType"/>
+            <field name="location"/>
+            <field name="status"/>
+            <field name="lastReading"/>
+            <field name="lastReadingDate"/>
+        </view>
+        <view name="form">
+            <field name="name"/>
+            <field name="meterId"/>
+            <field name="meterType"/>
+            <field name="installationDate"/>
+            <field name="location"/>
+            <field name="status"/>
+            <field name="lastReading"/>
+            <field name="lastReadingDate"/>
+            <field name="unit"/>
+            <field name="manufacturer"/>
+            <field name="model"/>
+            <field name="serialNumber"/>
+            <field name="communicationProtocol"/>
+            <field name="ipAddress"/>
+            <field name="port"/>
+            <field name="notes"/>
+        </view>
+    </views>
+
+</model>

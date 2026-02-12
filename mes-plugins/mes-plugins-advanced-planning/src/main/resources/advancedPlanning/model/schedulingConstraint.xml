@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="schedulingConstraint" package="advancedPlanning">
+        <field name="id" type="id"/>
+        <field name="name" type="string" length="255" required="true"/>
+        <field name="description" type="string" length="1000"/>
+        <field name="constraintType" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>RESOURCE_CAPACITY</value>
+                    <value>OPERATION_SEQUENCE</value>
+                    <value>LEAD_TIME</value>
+                    <value>DEMAND_SUPPLY</value>
+                    <value>CUSTOM</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="priority" type="integer" defaultValue="5">
+            <validations>
+                <min value="1"/>
+                <max value="10"/>
+            </validations>
+        </field>
+        <field name="constraintValue" type="string" length="255" required="true"/>
+        <field name="resource" type="string" length="255"/>
+        <field name="operation" type="string" length="255"/>
+        <field name="startDate" type="date"/>
+        <field name="endDate" type="date"/>
+        <field name="enabled" type="boolean" defaultValue="true"/>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="constraintType"/>
+                <field name="priority"/>
+                <field name="constraintValue"/>
+                <field name="resource"/>
+                <field name="operation"/>
+                <field name="startDate"/>
+                <field name="endDate"/>
+                <field name="enabled"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

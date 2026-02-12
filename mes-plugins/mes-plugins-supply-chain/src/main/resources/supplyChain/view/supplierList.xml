@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/view.xsd">
+
+    <page name="supplierList" extensionOf="list">
+        <table name="suppliers" entity="supplier">
+            <columns>
+                <column name="number" sortable="true" filter="true"/>
+                <column name="name" sortable="true" filter="true"/>
+                <column name="contactPerson" sortable="true" filter="true"/>
+                <column name="email" sortable="true" filter="true"/>
+                <column name="phone" sortable="true" filter="true"/>
+                <column name="address" sortable="true" filter="true"/>
+                <column name="status" sortable="true" filter="true"/>
+                <column name="qualityRating" sortable="true" filter="true"/>
+                <column name="deliveryRating" sortable="true" filter="true"/>
+                <column name="priceRating" sortable="true" filter="true"/>
+                <column name="serviceRating" sortable="true" filter="true"/>
+                <column name="overallRating" sortable="true" filter="true"/>
+                <column name="created" sortable="true" filter="true"/>
+            </columns>
+            <toolbar>
+                <button name="add" action="navigateTo" params="{view: 'supplierDetails', mode: 'new'}"/>
+                <button name="edit" action="navigateTo" params="{view: 'supplierDetails', mode: 'edit'}" condition="singleSelected"/>
+                <button name="delete" action="delete" condition="singleSelected"/>
+                <button name="refresh" action="refresh"/>
+            </toolbar>
+        </table>
+    </page>
+
+</view>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="order" type="string" required="true"/>
+        <field name="operation" type="string" required="true"/>
+        <field name="workstation" type="string" required="true"/>
+        <field name="operator" type="string" required="true"/>
+        <field name="dataType" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Production Count</list>
+                    <list>Quality Check</list>
+                    <list>Maintenance</list>
+                    <list>Material Consumption</list>
+                    <list>Downtime</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="value" type="string" required="true"/>
+        <field name="unit" type="string"/>
+        <field name="timestamp" type="dateTime" required="true"/>
+        <field name="deviceId" type="string" required="true"/>
+        <field name="location" type="string"/>
+        <field name="notes" type="text"/>
+        <field name="status" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Recorded</list>
+                    <list>Processed</list>
+                    <list>Error</list>
+                </inList>
+            </constraints>
+        </field>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="order"/>
+            <field name="operation"/>
+            <field name="dataType"/>
+            <field name="value"/>
+            <field name="timestamp"/>
+            <field name="status"/>
+        </view>
+        <view name="form">
+            <field name="order"/>
+            <field name="operation"/>
+            <field name="workstation"/>
+            <field name="operator"/>
+            <field name="dataType"/>
+            <field name="value"/>
+            <field name="unit"/>
+            <field name="timestamp"/>
+            <field name="deviceId"/>
+            <field name="location"/>
+            <field name="notes"/>
+            <field name="status"/>
+        </view>
+    </views>
+
+</model>

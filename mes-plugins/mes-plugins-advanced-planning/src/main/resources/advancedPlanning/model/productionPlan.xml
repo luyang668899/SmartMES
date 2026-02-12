@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="productionPlan" package="advancedPlanning">
+        <field name="id" type="id"/>
+        <field name="name" type="string" length="255" required="true"/>
+        <field name="description" type="string" length="1000"/>
+        <field name="planType" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>LONG_TERM</value>
+                    <value>MEDIUM_TERM</value>
+                    <value>SHORT_TERM</value>
+                    <value>REAL_TIME</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="startDate" type="date" required="true"/>
+        <field name="endDate" type="date" required="true"/>
+        <field name="status" type="string" length="50" required="true" defaultValue="DRAFT">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>DRAFT</value>
+                    <value>IN_PROGRESS</value>
+                    <value>COMPLETED</value>
+                    <value>ARCHIVED</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="optimizationLevel" type="string" length="50" defaultValue="STANDARD">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>BASIC</value>
+                    <value>STANDARD</value>
+                    <value>ADVANCED</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="totalOrders" type="integer"/>
+        <field name="totalResources" type="integer"/>
+        <field name="makespan" type="integer"/>
+        <field name="utilizationRate" type="decimal" scale="2"/>
+        <field name="lastOptimization" type="dateTime"/>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="planType"/>
+                <field name="startDate"/>
+                <field name="endDate"/>
+                <field name="status"/>
+                <field name="optimizationLevel"/>
+                <field name="totalOrders"/>
+                <field name="totalResources"/>
+                <field name="makespan"/>
+                <field name="utilizationRate"/>
+                <field name="lastOptimization"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

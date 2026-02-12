@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="advancedPlanning" group="advancedPlanning" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Advanced Planning</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Advanced planning and scheduling functionality including constraint-based planning and real-time scheduling</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_ADVANCED_PLANNING"/>
+        
+        <model:model model="productionPlan" resource="advancedPlanning/model/productionPlan.xml"/>
+        <model:model model="schedulingConstraint" resource="advancedPlanning/model/schedulingConstraint.xml"/>
+        <model:model model="resourceAllocation" resource="advancedPlanning/model/resourceAllocation.xml"/>
+        <model:model model="advancedPlanningParameter" resource="advancedPlanning/model/advancedPlanningParameter.xml"/>
+        
+        <menu:menu-category name="advancedPlanning" defaultAuthorizationRole="ROLE_ADVANCED_PLANNING"/>
+        
+        <menu:menu-item name="productionPlansList" category="advancedPlanning" view="productionPlansList" defaultAuthorizationRole="ROLE_ADVANCED_PLANNING"/>
+        <menu:menu-item name="schedulingConstraintsList" category="advancedPlanning" view="schedulingConstraintsList" defaultAuthorizationRole="ROLE_ADVANCED_PLANNING"/>
+        <menu:menu-item name="resourceAllocationsList" category="advancedPlanning" view="resourceAllocationsList" defaultAuthorizationRole="ROLE_ADVANCED_PLANNING"/>
+        <menu:menu-item name="advancedPlanningParameters" category="advancedPlanning" view="advancedPlanningParameters" defaultAuthorizationRole="ROLE_ADVANCED_PLANNING"/>
+        
+        <view:view resource="advancedPlanning/view/productionPlansList.xml"/>
+        <view:view resource="advancedPlanning/view/productionPlanDetails.xml"/>
+        <view:view resource="advancedPlanning/view/schedulingConstraintsList.xml"/>
+        <view:view resource="advancedPlanning/view/schedulingConstraintDetails.xml"/>
+        <view:view resource="advancedPlanning/view/resourceAllocationsList.xml"/>
+        <view:view resource="advancedPlanning/view/resourceAllocationDetails.xml"/>
+        <view:view resource="advancedPlanning/view/advancedPlanningParameters.xml"/>
+        
+        <custom:custom class="com.qcadoo.mes.advancedPlanning.AdvancedPlanningOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

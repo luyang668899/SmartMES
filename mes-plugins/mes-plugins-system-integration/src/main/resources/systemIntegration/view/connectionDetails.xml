@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="connectionDetails">
+        <fields>
+            <field name="name" />
+            <field name="description" />
+            <field name="connectionType" />
+            <field name="endpointUrl" />
+            <field name="authenticationType" />
+            <field name="username" />
+            <field name="password" />
+            <field name="apiKey" />
+            <field name="status" />
+            <field name="lastTestDate" />
+            <field name="testResult" />
+        </fields>
+        <actions>
+            <action name="save" type="save" />
+            <action name="cancel" type="cancel" />
+            <action name="delete" type="delete" />
+            <action name="testConnection" type="button" />
+        </actions>
+    </form>
+
+</view>

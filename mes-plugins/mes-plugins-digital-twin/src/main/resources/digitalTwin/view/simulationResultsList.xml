@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="simulationResultsList">
+        <fields>
+            <field name="scenario" />
+            <field name="runDate" />
+            <field name="status" />
+            <field name="duration" />
+            <field name="outputValues" />
+            <field name="comparison" />
+            <field name="notes" />
+        </fields>
+        <actions>
+            <action name="view" type="view" />
+            <action name="delete" type="delete" />
+        </actions>
+    </grid>
+
+</view>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="integrationConnection" package="systemIntegration">
+        <field name="id" type="id"/>
+        <field name="name" type="string" length="255" required="true"/>
+        <field name="description" type="string" length="1000"/>
+        <field name="systemType" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>ERP</value>
+                    <value>CRM</value>
+                    <value>WMS</value>
+                    <value>PLM</value>
+                    <value>BI</value>
+                    <value>THIRD_PARTY</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="connectionType" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>REST</value>
+                    <value>SOAP</value>
+                    <value>JDBC</value>
+                    <value>FILE</value>
+                    <value>MESSAGE_QUEUE</value>
+                    <value>WEBHOOK</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="connectionUrl" type="string" length="1000"/>
+        <field name="username" type="string" length="255"/>
+        <field name="password" type="string" length="255"/>
+        <field name="apiKey" type="string" length="500"/>
+        <field name="enabled" type="boolean" defaultValue="false"/>
+        <field name="lastConnection" type="dateTime"/>
+        <field name="status" type="string" length="50" required="true" defaultValue="ACTIVE">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>ACTIVE</value>
+                    <value>INACTIVE</value>
+                    <value>ERROR</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="systemType"/>
+                <field name="connectionType"/>
+                <field name="connectionUrl"/>
+                <field name="username"/>
+                <field name="password"/>
+                <field name="apiKey"/>
+                <field name="enabled"/>
+                <field name="lastConnection"/>
+                <field name="status"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

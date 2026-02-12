@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>supplyChain.supplier.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="name" type="string" required="true">
+            <message>
+                <key>supplyChain.supplier.name.error.empty</key>
+                <message>Name cannot be empty</message>
+            </message>
+        </field>
+
+        <field name="company" type="manyToOne" model="company" plugin="basic"/>
+
+        <field name="contactPerson" type="string"/>
+
+        <field name="phone" type="string"/>
+
+        <field name="email" type="string">
+            <validation>
+                <rule type="email"/>
+            </validation>
+        </field>
+
+        <field name="address" type="manyToOne" model="address" plugin="basic"/>
+
+        <field name="website" type="string"/>
+
+        <field name="status" type="string" required="true" default="ACTIVE">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">ACTIVE,INACTIVE,PENDING,BLACKLISTED</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="supplierType" type="string">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">Primary,Secondary,Local,International,Preferred</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="paymentTerms" type="string"/>
+
+        <field name="leadTime" type="integer"/>
+
+        <field name="qualityCertifications" type="text"/>
+
+        <field name="specializations" type="text"/>
+
+        <field name="notes" type="text"/>
+
+        <field name="averageRating" type="decimal">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">0.0</parameter>
+                    <parameter name="max">5.0</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="isApproved" type="boolean" default="false"/>
+
+        <field name="approvalDate" type="date"/>
+
+        <field name="approvedBy" type="manyToOne" model="staff" plugin="basic"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="company"/>
+            <field name="status"/>
+            <field name="supplierType"/>
+            <field name="averageRating"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="company"/>
+            <field name="contactPerson"/>
+            <field name="phone"/>
+            <field name="email"/>
+            <field name="address"/>
+            <field name="website"/>
+            <field name="status"/>
+            <field name="supplierType"/>
+            <field name="paymentTerms"/>
+            <field name="leadTime"/>
+            <field name="qualityCertifications"/>
+            <field name="specializations"/>
+            <field name="notes"/>
+            <field name="averageRating"/>
+            <field name="isApproved"/>
+            <field name="approvalDate"/>
+            <field name="approvedBy"/>
+        </view>
+
+    </views>
+
+</model>

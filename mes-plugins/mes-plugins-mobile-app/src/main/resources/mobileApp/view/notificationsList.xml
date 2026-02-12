@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="notificationsListGrid">
+        <fields>
+            <field name="title"/>
+            <field name="notificationType"/>
+            <field name="priority"/>
+            <field name="recipient"/>
+            <field name="deviceId"/>
+            <field name="sentAt"/>
+            <field name="deliveredAt"/>
+            <field name="readAt"/>
+            <field name="status"/>
+            <field name="actionRequired"/>
+        </fields>
+        <actions>
+            <action name="view" type="view"/>
+            <action name="edit" type="edit"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </grid>
+
+    <form name="notificationsListForm">
+        <fields>
+            <field name="title" type="text"/>
+            <field name="notificationType" type="select"/>
+            <field name="priority" type="select"/>
+            <field name="recipient" type="text"/>
+            <field name="deviceId" type="text"/>
+            <field name="status" type="select"/>
+            <field name="actionRequired" type="boolean"/>
+            <field name="sentAt" type="datetimeRange"/>
+        </fields>
+        <actions>
+            <action name="search" type="search"/>
+            <action name="reset" type="reset"/>
+            <action name="add" type="add"/>
+        </actions>
+    </form>
+
+</view>

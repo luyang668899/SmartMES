@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://www.qcadoo.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.qcadoo.com/model view.xsd">
+    <page>
+        <title>Predictive Maintenance Parameters</title>
+        <grid name="predictiveMaintenanceParameterGrid" entity="predictiveMaintenance.predictiveMaintenanceParameter">
+            <columns>
+                <column name="parameter" type="string" width="200"/>
+                <column name="value" type="string" width="200"/>
+                <column name="description" type="text" width="300"/>
+                <column name="active" type="boolean" width="100"/>
+            </columns>
+            <actions>
+                <action name="view" type="navigate" url="/page/predictiveMaintenance/predictiveMaintenanceParameterDetails.html?recordId={id}"/>
+                <action name="add" type="navigate" url="/page/predictiveMaintenance/predictiveMaintenanceParameterDetails.html"/>
+                <action name="delete" type="delete"/>
+            </actions>
+            <filters>
+                <filter name="active" type="boolean"/>
+                <filter name="parameter" type="string" />
+            </filters>
+            <sorts>
+                <sort name="parameter" direction="asc"/>
+            </sorts>
+        </grid>
+    </page>
+</view>

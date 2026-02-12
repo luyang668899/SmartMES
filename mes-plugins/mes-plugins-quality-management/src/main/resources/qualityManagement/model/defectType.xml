@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>qualityManagement.defectType.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="name" type="string" required="true">
+            <message>
+                <key>qualityManagement.defectType.name.error.empty</key>
+                <message>Name cannot be empty</message>
+            </message>
+        </field>
+
+        <field name="description" type="text"/>
+
+        <field name="category" type="string" required="true">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">CRITICAL,Major,Minor,Cosmetic</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="severity" type="integer" required="true">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1</parameter>
+                    <parameter name="max">5</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="isActive" type="boolean" default="true"/>
+
+        <field name="detectionMethod" type="string"/>
+
+        <field name="possibleCauses" type="text"/>
+
+        <field name="recommendedActions" type="text"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="category"/>
+            <field name="severity"/>
+            <field name="isActive"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="category"/>
+            <field name="severity"/>
+            <field name="isActive"/>
+            <field name="detectionMethod"/>
+            <field name="possibleCauses"/>
+            <field name="recommendedActions"/>
+        </view>
+
+    </views>
+
+</model>

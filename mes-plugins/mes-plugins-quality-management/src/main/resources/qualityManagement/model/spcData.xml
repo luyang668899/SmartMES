@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="qualityControl" type="manyToOne" model="qualityControl" required="true"/>
+
+        <field name="parameterName" type="string" required="true"/>
+
+        <field name="sampleNumber" type="integer" required="true"/>
+
+        <field name="dataValue" type="decimal" required="true"/>
+
+        <field name="timestamp" type="dateTime" required="true" default="now"/>
+
+        <field name="operator" type="manyToOne" model="staff" plugin="basic"/>
+
+        <field name="shift" type="manyToOne" model="shift" plugin="basic"/>
+
+        <field name="machine" type="manyToOne" model="equipment" plugin="equipmentConnection"/>
+
+        <field name="workstation" type="manyToOne" model="workstation" plugin="basic"/>
+
+        <field name="isOutOfControl" type="boolean" default="false"/>
+
+        <field name="controlLimits" type="string"/>
+
+        <field name="upperControlLimit" type="decimal"/>
+
+        <field name="lowerControlLimit" type="decimal"/>
+
+        <field name="targetValue" type="decimal"/>
+
+        <field name="comments" type="text"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="qualityControl"/>
+            <field name="parameterName"/>
+            <field name="sampleNumber"/>
+            <field name="dataValue"/>
+            <field name="timestamp"/>
+            <field name="isOutOfControl"/>
+        </view>
+
+        <view name="form">
+            <field name="qualityControl"/>
+            <field name="parameterName"/>
+            <field name="sampleNumber"/>
+            <field name="dataValue"/>
+            <field name="timestamp"/>
+            <field name="operator"/>
+            <field name="shift"/>
+            <field name="machine"/>
+            <field name="workstation"/>
+            <field name="isOutOfControl"/>
+            <field name="controlLimits"/>
+            <field name="upperControlLimit"/>
+            <field name="lowerControlLimit"/>
+            <field name="targetValue"/>
+            <field name="comments"/>
+        </view>
+
+    </views>
+
+</model>

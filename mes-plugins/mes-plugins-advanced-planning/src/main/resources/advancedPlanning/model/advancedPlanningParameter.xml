@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="advancedPlanningParameter" package="advancedPlanning" singleton="true">
+        <field name="id" type="id"/>
+        
+        <!-- 计划参数 -->
+        <field name="defaultPlanHorizon" type="integer" defaultValue="30">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="defaultOptimizationLevel" type="string" length="50" defaultValue="STANDARD">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>BASIC</value>
+                    <value>STANDARD</value>
+                    <value>ADVANCED</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="maxConcurrentOrders" type="integer" defaultValue="100">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 调度参数 -->
+        <field name="schedulingInterval" type="integer" defaultValue="5">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="maxSchedulingTime" type="integer" defaultValue="300">
+            <validations>
+                <min value="10"/>
+            </validations>
+        </field>
+        <field name="enableRealTimeScheduling" type="boolean" defaultValue="false"/>
+        
+        <!-- 资源参数 -->
+        <field name="resourceUtilizationTarget" type="decimal" scale="2" defaultValue="0.85">
+            <validations>
+                <min value="0.1"/>
+                <max value="1.0"/>
+            </validations>
+        </field>
+        <field name="overtimeAllowed" type="boolean" defaultValue="false"/>
+        <field name="maxOvertimeHours" type="integer" defaultValue="10">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 优化参数 -->
+        <field name="optimizationAlgorithm" type="string" length="50" defaultValue="GENETIC">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>GENETIC</value>
+                    <value>GREEDY</value>
+                    <value>BRANCH_AND_BOUND</value>
+                    <value>HEURISTIC</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="populationSize" type="integer" defaultValue="100">
+            <validations>
+                <min value="10"/>
+            </validations>
+        </field>
+        <field name="maxGenerations" type="integer" defaultValue="500">
+            <validations>
+                <min value="10"/>
+            </validations>
+        </field>
+        
+        <!-- 系统参数 -->
+        <field name="enableEmailNotifications" type="boolean" defaultValue="true"/>
+        <field name="notificationEmail" type="string" length="255"/>
+        <field name="enableAuditLogging" type="boolean" defaultValue="true"/>
+        
+        <!-- 审计字段 -->
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="defaultPlanHorizon" label="advancedPlanning.advancedPlanningParameter.field.defaultPlanHorizon"/>
+                <field name="defaultOptimizationLevel" label="advancedPlanning.advancedPlanningParameter.field.defaultOptimizationLevel"/>
+                <field name="maxConcurrentOrders" label="advancedPlanning.advancedPlanningParameter.field.maxConcurrentOrders"/>
+                <field name="schedulingInterval" label="advancedPlanning.advancedPlanningParameter.field.schedulingInterval"/>
+                <field name="maxSchedulingTime" label="advancedPlanning.advancedPlanningParameter.field.maxSchedulingTime"/>
+                <field name="enableRealTimeScheduling" label="advancedPlanning.advancedPlanningParameter.field.enableRealTimeScheduling"/>
+                <field name="resourceUtilizationTarget" label="advancedPlanning.advancedPlanningParameter.field.resourceUtilizationTarget"/>
+                <field name="overtimeAllowed" label="advancedPlanning.advancedPlanningParameter.field.overtimeAllowed"/>
+                <field name="maxOvertimeHours" label="advancedPlanning.advancedPlanningParameter.field.maxOvertimeHours"/>
+                <field name="optimizationAlgorithm" label="advancedPlanning.advancedPlanningParameter.field.optimizationAlgorithm"/>
+                <field name="populationSize" label="advancedPlanning.advancedPlanningParameter.field.populationSize"/>
+                <field name="maxGenerations" label="advancedPlanning.advancedPlanningParameter.field.maxGenerations"/>
+                <field name="enableEmailNotifications" label="advancedPlanning.advancedPlanningParameter.field.enableEmailNotifications"/>
+                <field name="notificationEmail" label="advancedPlanning.advancedPlanningParameter.field.notificationEmail"/>
+                <field name="enableAuditLogging" label="advancedPlanning.advancedPlanningParameter.field.enableAuditLogging"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

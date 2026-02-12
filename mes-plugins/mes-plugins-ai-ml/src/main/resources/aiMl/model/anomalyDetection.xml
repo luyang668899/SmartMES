@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <entities>
+        <entity name="anomalyDetection" package="com.qcadoo.mes.aiMl">
+            <fields>
+                <field name="name" type="string" required="true" />
+                <field name="description" type="string" />
+                <field name="detectionType" type="string" required="true" />
+                <field name="threshold" type="decimal" />
+                <field name="sourceSystem" type="string" />
+                <field name="status" type="string" />
+                <field name="createdDate" type="dateTime" />
+                <field name="lastRun" type="dateTime" />
+                <field name="createdBy" type="string" />
+                <field name="parameters" type="json" />
+                <field name="isActive" type="boolean" defaultValue="true" />
+            </fields>
+            <constraints>
+                <constraint name="uniqueName" unique="true">
+                    <field name="name" />
+                </constraint>
+            </constraints>
+        </entity>
+    </entities>
+
+</model>

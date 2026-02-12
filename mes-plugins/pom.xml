@@ -71,6 +71,17 @@
         <module>mes-plugins-technologies-generator</module>
         <module>mes-plugins-email-notifications</module>
         <module>mes-plugins-deliveries-min-state</module>
+        <module>mes-plugins-equipment-connection</module>
+        <module>mes-plugins-quality-management</module>
+        <module>mes-plugins-supply-chain</module>
+        <module>mes-plugins-data-analysis</module>
+        <module>mes-plugins-system-integration</module>
+        <module>mes-plugins-advanced-planning</module>
+        <module>mes-plugins-digital-twin</module>
+        <module>mes-plugins-ai-ml</module>
+        <module>mes-plugins-mobile-app</module>
+        <module>mes-plugins-energy-management</module>
+        <module>mes-plugins-predictive-maintenance</module>
     </modules>
 
 </project>

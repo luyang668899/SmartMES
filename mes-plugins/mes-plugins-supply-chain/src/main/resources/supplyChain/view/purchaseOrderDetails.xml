@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/view.xsd">
+
+    <page name="purchaseOrderDetails" extensionOf="form">
+        <form name="purchaseOrderForm" entity="purchaseOrder">
+            <fields>
+                <field name="number" required="true"/>
+                <field name="supplier" required="true"/>
+                <field name="orderDate" required="true"/>
+                <field name="expectedDeliveryDate"/>
+                <field name="actualDeliveryDate"/>
+                <field name="status" required="true"/>
+                <field name="totalAmount"/>
+                <field name="currency"/>
+                <field name="paymentTerms"/>
+                <field name="paymentStatus"/>
+                <field name="notes" type="textarea"/>
+            </fields>
+            <toolbar>
+                <button name="save" action="save"/>
+                <button name="cancel" action="navigateTo" params="{view: 'purchaseOrderList'}"/>
+                <button name="delete" action="delete" condition="idSet"/>
+            </toolbar>
+        </form>
+    </page>
+
+</view>

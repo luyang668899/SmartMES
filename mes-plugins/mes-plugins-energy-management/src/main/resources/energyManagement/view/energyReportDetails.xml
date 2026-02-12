@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="energyReportDetailsForm">
+        <fields>
+            <field name="name" type="text" required="true"/>
+            <field name="reportId" type="text" required="true"/>
+            <field name="reportType" type="select" required="true">
+                <option>Daily</option>
+                <option>Weekly</option>
+                <option>Monthly</option>
+                <option>Quarterly</option>
+                <option>Annual</option>
+                <option>Custom</option>
+            </field>
+            <field name="startDate" type="date" required="true"/>
+            <field name="endDate" type="date" required="true"/>
+            <field name="electricityConsumption" type="decimal"/>
+            <field name="electricityCost" type="decimal"/>
+            <field name="gasConsumption" type="decimal"/>
+            <field name="gasCost" type="decimal"/>
+            <field name="waterConsumption" type="decimal"/>
+            <field name="waterCost" type="decimal"/>
+            <field name="steamConsumption" type="decimal"/>
+            <field name="steamCost" type="decimal"/>
+            <field name="compressedAirConsumption" type="decimal"/>
+            <field name="compressedAirCost" type="decimal"/>
+            <field name="totalConsumption" type="decimal"/>
+            <field name="totalCost" type="decimal"/>
+            <field name="currency" type="text" required="true"/>
+            <field name="generationDate" type="datetime" required="true"/>
+            <field name="generatedBy" type="text"/>
+            <field name="status" type="select">
+                <option>Draft</option>
+                <option>Generated</option>
+                <option>Approved</option>
+                <option>Rejected</option>
+                <option>Archived</option>
+            </field>
+            <field name="notes" type="textarea"/>
+            <field name="recommendations" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </form>
+
+</view>

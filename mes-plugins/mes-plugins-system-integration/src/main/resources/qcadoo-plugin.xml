@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="systemIntegration" group="systemIntegration" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - System Integration</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>System integration functionality including ERP, CRM, and third-party system integration</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>supplyChain</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>dataAnalysis</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_SYSTEM_INTEGRATION"/>
+        
+        <model:model model="integrationConnection" resource="systemIntegration/model/integrationConnection.xml"/>
+        <model:model model="integrationMapping" resource="systemIntegration/model/integrationMapping.xml"/>
+        <model:model model="integrationLog" resource="systemIntegration/model/integrationLog.xml"/>
+        <model:model model="systemIntegrationParameter" resource="systemIntegration/model/systemIntegrationParameter.xml"/>
+        
+        <menu:menu-category name="systemIntegration" defaultAuthorizationRole="ROLE_SYSTEM_INTEGRATION"/>
+        
+        <menu:menu-item name="connectionsList" category="systemIntegration" view="connectionsList" defaultAuthorizationRole="ROLE_SYSTEM_INTEGRATION"/>
+        <menu:menu-item name="mappingsList" category="systemIntegration" view="mappingsList" defaultAuthorizationRole="ROLE_SYSTEM_INTEGRATION"/>
+        <menu:menu-item name="logsList" category="systemIntegration" view="logsList" defaultAuthorizationRole="ROLE_SYSTEM_INTEGRATION"/>
+        <menu:menu-item name="systemIntegrationParameters" category="systemIntegration" view="systemIntegrationParameters" defaultAuthorizationRole="ROLE_SYSTEM_INTEGRATION"/>
+        
+        <view:view resource="systemIntegration/view/connectionsList.xml"/>
+        <view:view resource="systemIntegration/view/connectionDetails.xml"/>
+        <view:view resource="systemIntegration/view/mappingsList.xml"/>
+        <view:view resource="systemIntegration/view/mappingDetails.xml"/>
+        <view:view resource="systemIntegration/view/logsList.xml"/>
+        <view:view resource="systemIntegration/view/logDetails.xml"/>
+        <view:view resource="systemIntegration/view/systemIntegrationParameters.xml"/>
+        
+        <custom:custom class="com.qcadoo.mes.systemIntegration.SystemIntegrationOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

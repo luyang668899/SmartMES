@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <page>
+        <title>OEE Monitoring</title>
+
+        <form>
+            <grid>
+                <fields>
+                    <field name="equipment" lookup="true" filter="true"/>
+                    <field name="fromDate" type="date"/>
+                    <field name="toDate" type="date"/>
+                    <field name="shift" lookup="true" filter="true" plugin="basic"/>
+                </fields>
+            </grid>
+        </form>
+
+        <chart name="oeeChart" type="line" height="400">
+            <datasource model="oeeData"/>
+            <categories field="timestamp"/>
+            <series>
+                <series name="OEE" field="oee" color="#3498db"/>
+                <series name="Availability" field="availability" color="#27ae60"/>
+                <series name="Performance" field="performance" color="#f39c12"/>
+                <series name="Quality" field="quality" color="#9b59b6"/>
+            </series>
+        </chart>
+
+        <table name="oeeData" model="oeeData" view="tree">
+            <actions>
+                <action name="refresh"/>
+                <action name="export"/>
+            </actions>
+
+            <columns>
+                <column name="equipment" sortable="true"/>
+                <column name="timestamp" sortable="true"/>
+                <column name="oee" sortable="true">
+                    <format type="number" pattern="#.##"/>
+                </column>
+                <column name="availability" sortable="true">
+                    <format type="number" pattern="#.##"/>
+                </column>
+                <column name="performance" sortable="true">
+                    <format type="number" pattern="#.##"/>
+                </column>
+                <column name="quality" sortable="true">
+                    <format type="number" pattern="#.##"/>
+                </column>
+                <column name="plannedProductionTime"/>
+                <column name="operatingTime"/>
+                <column name="goodCount"/>
+                <column name="totalCount"/>
+                <column name="downtimeMinutes"/>
+                <column name="downtimeReason"/>
+                <column name="shift"/>
+                <column name="productionOrder"/>
+            </columns>
+
+            <rightFragments>
+                <fragment name="gridSize"/>
+                <fragment name="refreshInterval"/>
+                <fragment name="export"/>
+            </rightFragments>
+
+        </table>
+
+    </page>
+
+</view>

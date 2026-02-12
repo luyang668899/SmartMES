@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="energyConsumptionDetailsForm">
+        <fields>
+            <field name="energyMeter" type="text" required="true"/>
+            <field name="meterType" type="select" required="true">
+                <option>Electricity</option>
+                <option>Gas</option>
+                <option>Water</option>
+                <option>Steam</option>
+                <option>Compressed Air</option>
+            </field>
+            <field name="startReading" type="decimal" required="true"/>
+            <field name="endReading" type="decimal" required="true"/>
+            <field name="consumption" type="decimal" required="true"/>
+            <field name="unit" type="select" required="true">
+                <option>kWh</option>
+                <option>M3</option>
+                <option>L</option>
+                <option>kg</option>
+                <option>Nm3</option>
+            </field>
+            <field name="startDate" type="datetime" required="true"/>
+            <field name="endDate" type="datetime" required="true"/>
+            <field name="duration" type="integer"/>
+            <field name="location" type="text"/>
+            <field name="costCenter" type="text"/>
+            <field name="productionOrder" type="text"/>
+            <field name="equipment" type="text"/>
+            <field name="tariff" type="text"/>
+            <field name="cost" type="decimal"/>
+            <field name="currency" type="text"/>
+            <field name="dataSource" type="select">
+                <option>Automatic</option>
+                <option>Manual</option>
+                <option>Imported</option>
+            </field>
+            <field name="status" type="select">
+                <option>Recorded</option>
+                <option>Validated</option>
+                <option>Rejected</option>
+            </field>
+            <field name="notes" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </form>
+
+</view>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="integrationMapping" package="systemIntegration">
+        <field name="id" type="id"/>
+        <field name="name" type="string" length="255" required="true"/>
+        <field name="description" type="string" length="1000"/>
+        <field name="connection" type="manyToOne" manyToOne="integrationConnection" required="true"/>
+        <field name="direction" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>INBOUND</value>
+                    <value>OUTBOUND</value>
+                    <value>BIDIRECTIONAL</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="sourceEntity" type="string" length="255" required="true"/>
+        <field name="targetEntity" type="string" length="255" required="true"/>
+        <field name="mappingConfiguration" type="string" length="4000" required="true"/>
+        <field name="transformationRules" type="string" length="4000"/>
+        <field name="schedule" type="string" length="255"/>
+        <field name="enabled" type="boolean" defaultValue="false"/>
+        <field name="lastExecution" type="dateTime"/>
+        <field name="status" type="string" length="50" required="true" defaultValue="ACTIVE">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>ACTIVE</value>
+                    <value>INACTIVE</value>
+                    <value>ERROR</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="connection"/>
+                <field name="direction"/>
+                <field name="sourceEntity"/>
+                <field name="targetEntity"/>
+                <field name="mappingConfiguration"/>
+                <field name="transformationRules"/>
+                <field name="schedule"/>
+                <field name="enabled"/>
+                <field name="lastExecution"/>
+                <field name="status"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

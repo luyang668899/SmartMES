@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="mobileDeviceDetailsForm">
+        <fields>
+            <field name="name" type="text" required="true"/>
+            <field name="deviceId" type="text" required="true"/>
+            <field name="deviceType" type="select" required="true">
+                <option>iOS</option>
+                <option>Android</option>
+                <option>Windows</option>
+            </field>
+            <field name="osVersion" type="text"/>
+            <field name="appVersion" type="text"/>
+            <field name="lastConnected" type="datetime"/>
+            <field name="status" type="select" required="true">
+                <option>Active</option>
+                <option>Inactive</option>
+                <option>Offline</option>
+            </field>
+            <field name="assignedTo" type="text"/>
+            <field name="location" type="text"/>
+            <field name="notes" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </form>
+
+</view>

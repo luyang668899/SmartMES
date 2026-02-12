@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="resourceAllocation" package="advancedPlanning">
+        <field name="id" type="id"/>
+        <field name="productionPlan" type="manyToOne" manyToOne="productionPlan" required="true"/>
+        <field name="resourceName" type="string" length="255" required="true"/>
+        <field name="resourceType" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>EQUIPMENT</value>
+                    <value>LABOR</value>
+                    <value>MATERIAL</value>
+                    <value>SPACE</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="operation" type="string" length="255"/>
+        <field name="orderNumber" type="string" length="255"/>
+        <field name="startTime" type="dateTime" required="true"/>
+        <field name="endTime" type="dateTime" required="true"/>
+        <field name="duration" type="integer"/>
+        <field name="utilizationRate" type="decimal" scale="2"/>
+        <field name="status" type="string" length="50" required="true" defaultValue="PLANNED">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>PLANNED</value>
+                    <value>IN_PROGRESS</value>
+                    <value>COMPLETED</value>
+                    <value>CANCELLED</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="priority" type="integer" defaultValue="5">
+            <validations>
+                <min value="1"/>
+                <max value="10"/>
+            </validations>
+        </field>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="productionPlan"/>
+                <field name="resourceName"/>
+                <field name="resourceType"/>
+                <field name="operation"/>
+                <field name="orderNumber"/>
+                <field name="startTime"/>
+                <field name="endTime"/>
+                <field name="duration"/>
+                <field name="utilizationRate"/>
+                <field name="status"/>
+                <field name="priority"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

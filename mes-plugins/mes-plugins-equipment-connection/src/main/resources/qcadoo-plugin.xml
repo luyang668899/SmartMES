@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="equipmentConnection" group="equipmentConnection" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Equipment Connection</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Equipment connection and OEE monitoring functionality</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_EQUIPMENT_CONNECTION"/>
+        <security:role identifier="ROLE_OEE_MONITORING"/>
+
+        <model:model model="equipment" resource="equipmentConnection/model/equipment.xml"/>
+        <model:model model="equipmentConnection" resource="equipmentConnection/model/equipmentConnection.xml"/>
+        <model:model model="oeeData" resource="equipmentConnection/model/oeeData.xml"/>
+
+        <menu:menu-category name="equipment" defaultAuthorizationRole="ROLE_EQUIPMENT_CONNECTION"/>
+
+        <menu:menu-item name="equipmentList" category="equipment" view="equipmentList" defaultAuthorizationRole="ROLE_EQUIPMENT_CONNECTION"/>
+        <menu:menu-item name="oeeMonitoring" category="equipment" view="oeeMonitoring" defaultAuthorizationRole="ROLE_OEE_MONITORING"/>
+
+        <view:view resource="equipmentConnection/view/equipmentList.xml"/>
+        <view:view resource="equipmentConnection/view/equipmentDetails.xml"/>
+        <view:view resource="equipmentConnection/view/oeeMonitoring.xml"/>
+
+        <custom:custom class="com.qcadoo.mes.equipmentConnection.EquipmentConnectionService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

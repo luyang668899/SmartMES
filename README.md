@@ -1,6 +1,8 @@
 <a href="https://qcadoo.com"><img src="https://cloud.githubusercontent.com/assets/513146/25782749/bc50ca98-3350-11e7-8837-64fde0f16d48.png" alt="qcadoo MES" /></a>
 ![beautiful screenshot](https://cloud.githubusercontent.com/assets/513146/25784436/63e0b7c0-336d-11e7-8124-75f860e6f1f0.png)
-# qcadoo MES
+# SmartMES
+
+SmartMES (based on qcadoo MES) - 制造执行系统，专为中小型企业设计的生产管理解决方案，包含订单管理、工艺技术、物料管理、质量管理等核心功能。
 
 qcadoo MES is an Internet application for production management targeted at small and medium companies.It combines the functions of large ERP systems, adapting it to the specific character of Small and Medium Companies.
 

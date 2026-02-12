@@ -3,7 +3,7 @@
 .settings
 .DS_Store
 .pmd
-target
+target/
 mes.log*
 mes-application/src/main/java/HibernateTest.java
 mes-application/src/main/webapp/css/qcd.min.css
@@ -12,6 +12,14 @@ mes-application/src/main/webapp/js/qcd.min.js
 mes-application/src/main/webapp/js/qcd.all.js
 release.properties
 pom.xml.releaseBackup
+pom.xml.tag
+pom.xml.versionsBackup
+pom.xml.next
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://maven.apache.org/wrapper/#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
 bin
 txt
 *.iml

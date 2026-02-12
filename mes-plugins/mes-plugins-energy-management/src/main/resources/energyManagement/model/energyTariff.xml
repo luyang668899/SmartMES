@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="name" type="string" required="true"/>
+        <field name="tariffId" type="string" required="true" unique="true"/>
+        <field name="energyType" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Electricity</list>
+                    <list>Gas</list>
+                    <list>Water</list>
+                    <list>Steam</list>
+                    <list>Compressed Air</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="startDate" type="date" required="true"/>
+        <field name="endDate" type="date"/>
+        <field name="unitPrice" type="decimal" required="true"/>
+        <field name="currency" type="string" required="true"/>
+        <field name="unit" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>kWh</list>
+                    <list>M3</list>
+                    <list>L</list>
+                    <list>kg</list>
+                    <list>Nm3</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="tariffType" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Fixed</list>
+                    <list>Variable</list>
+                    <list>Time-of-Use</list>
+                    <list>Seasonal</list>
+                    <list>Peak</list>
+                    <list>Off-Peak</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="peakPrice" type="decimal"/>
+        <field name="offPeakPrice" type="decimal"/>
+        <field name="shoulderPrice" type="decimal"/>
+        <field name="peakStartTime" type="time"/>
+        <field name="peakEndTime" type="time"/>
+        <field name="offPeakStartTime" type="time"/>
+        <field name="offPeakEndTime" type="time"/>
+        <field name="shoulderStartTime" type="time"/>
+        <field name="shoulderEndTime" type="time"/>
+        <field name="VAT" type="decimal"/>
+        <field name="fixedCharge" type="decimal"/>
+        <field name="fixedChargeUnit" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Day</list>
+                    <list>Month</list>
+                    <list>Quarter</list>
+                    <list>Year</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="provider" type="string"/>
+        <field name="contractNumber" type="string"/>
+        <field name="status" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Active</list>
+                    <list>Inactive</list>
+                    <list>Future</list>
+                    <list>Expired</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="notes" type="text"/>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="name"/>
+            <field name="tariffId"/>
+            <field name="energyType"/>
+            <field name="unitPrice"/>
+            <field name="currency"/>
+            <field name="unit"/>
+            <field name="startDate"/>
+            <field name="endDate"/>
+            <field name="status"/>
+        </view>
+        <view name="form">
+            <field name="name"/>
+            <field name="tariffId"/>
+            <field name="energyType"/>
+            <field name="startDate"/>
+            <field name="endDate"/>
+            <field name="unitPrice"/>
+            <field name="currency"/>
+            <field name="unit"/>
+            <field name="tariffType"/>
+            <field name="peakPrice"/>
+            <field name="offPeakPrice"/>
+            <field name="shoulderPrice"/>
+            <field name="peakStartTime"/>
+            <field name="peakEndTime"/>
+            <field name="offPeakStartTime"/>
+            <field name="offPeakEndTime"/>
+            <field name="shoulderStartTime"/>
+            <field name="shoulderEndTime"/>
+            <field name="VAT"/>
+            <field name="fixedCharge"/>
+            <field name="fixedChargeUnit"/>
+            <field name="provider"/>
+            <field name="contractNumber"/>
+            <field name="status"/>
+            <field name="notes"/>
+        </view>
+    </views>
+
+</model>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="mobileApp" group="mobileApp" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Mobile App</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Mobile application integration for shop floor data collection and real-time notifications</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_MOBILE_APP"/>
+        
+        <model:model model="mobileDevice" resource="mobileApp/model/mobileDevice.xml"/>
+        <model:model model="shopFloorData" resource="mobileApp/model/shopFloorData.xml"/>
+        <model:model model="notification" resource="mobileApp/model/notification.xml"/>
+        <model:model model="mobileAppParameter" resource="mobileApp/model/mobileAppParameter.xml"/>
+        
+        <menu:menu-category name="mobileApp" defaultAuthorizationRole="ROLE_MOBILE_APP"/>
+        
+        <menu:menu-item name="mobileDevicesList" category="mobileApp" view="mobileDevicesList" defaultAuthorizationRole="ROLE_MOBILE_APP"/>
+        <menu:menu-item name="shopFloorDataList" category="mobileApp" view="shopFloorDataList" defaultAuthorizationRole="ROLE_MOBILE_APP"/>
+        <menu:menu-item name="notificationsList" category="mobileApp" view="notificationsList" defaultAuthorizationRole="ROLE_MOBILE_APP"/>
+        <menu:menu-item name="mobileAppParameters" category="mobileApp" view="mobileAppParameters" defaultAuthorizationRole="ROLE_MOBILE_APP"/>
+        
+        <view:view resource="mobileApp/view/mobileDevicesList.xml"/>
+        <view:view resource="mobileApp/view/mobileDeviceDetails.xml"/>
+        <view:view resource="mobileApp/view/shopFloorDataList.xml"/>
+        <view:view resource="mobileApp/view/shopFloorDataDetails.xml"/>
+        <view:view resource="mobileApp/view/notificationsList.xml"/>
+        <view:view resource="mobileApp/view/notificationDetails.xml"/>
+        <view:view resource="mobileApp/view/mobileAppParameters.xml"/>
+        
+        <custom:custom class="com.qcadoo.mes.mobileApp.MobileAppOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

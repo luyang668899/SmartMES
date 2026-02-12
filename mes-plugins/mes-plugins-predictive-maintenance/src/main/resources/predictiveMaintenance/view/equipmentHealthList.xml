@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://www.qcadoo.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.qcadoo.com/model view.xsd">
+    <page>
+        <title>Equipment Health List</title>
+        <grid name="equipmentHealthGrid" entity="predictiveMaintenance.equipmentHealth">
+            <columns>
+                <column name="equipment" type="manyToOne" width="200"/>
+                <column name="healthScore" type="decimal" width="100"/>
+                <column name="status" type="string" width="100"/>
+                <column name="lastMeasurement" type="dateTime" width="150"/>
+                <column name="nextPredictedFailure" type="dateTime" width="150"/>
+                <column name="failureProbability" type="decimal" width="100"/>
+                <column name="maintenancePriority" type="integer" width="100"/>
+            </columns>
+            <actions>
+                <action name="view" type="navigate" url="/page/predictiveMaintenance/equipmentHealthDetails.html?recordId={id}"/>
+                <action name="add" type="navigate" url="/page/predictiveMaintenance/equipmentHealthDetails.html"/>
+                <action name="delete" type="delete"/>
+            </actions>
+            <filters>
+                <filter name="status" type="string"/>
+                <filter name="maintenancePriority" type="integer"/>
+                <filter name="equipment" type="manyToOne" />
+            </filters>
+            <sorts>
+                <sort name="maintenancePriority" direction="desc"/>
+                <sort name="lastMeasurement" direction="desc"/>
+            </sorts>
+        </grid>
+    </page>
+</view>

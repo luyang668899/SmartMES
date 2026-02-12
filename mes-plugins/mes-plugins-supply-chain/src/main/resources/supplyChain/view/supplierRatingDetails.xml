@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/view.xsd">
+
+    <page name="supplierRatingDetails" extensionOf="form">
+        <form name="supplierRatingForm" entity="supplierRating">
+            <fields>
+                <field name="supplier" required="true"/>
+                <field name="ratingDate" required="true"/>
+                <field name="ratingPeriod" required="true"/>
+                <field name="qualityRating" required="true"/>
+                <field name="deliveryRating" required="true"/>
+                <field name="priceRating" required="true"/>
+                <field name="serviceRating" required="true"/>
+                <field name="overallRating"/>
+                <field name="reviewer" required="true"/>
+                <field name="status" required="true"/>
+                <field name="strengths" type="textarea"/>
+                <field name="weaknesses" type="textarea"/>
+                <field name="improvementActions" type="textarea"/>
+                <field name="notes" type="textarea"/>
+            </fields>
+            <toolbar>
+                <button name="save" action="save"/>
+                <button name="cancel" action="navigateTo" params="{view: 'supplierRatingList'}"/>
+                <button name="delete" action="delete" condition="idSet"/>
+            </toolbar>
+        </form>
+    </page>
+
+</view>

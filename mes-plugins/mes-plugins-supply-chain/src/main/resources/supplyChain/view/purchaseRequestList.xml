@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/view.xsd">
+
+    <page name="purchaseRequestList" extensionOf="list">
+        <table name="purchaseRequests" entity="purchaseRequest">
+            <columns>
+                <column name="number" sortable="true" filter="true"/>
+                <column name="requestDate" sortable="true" filter="true"/>
+                <column name="requester" sortable="true" filter="true"/>
+                <column name="department" sortable="true" filter="true"/>
+                <column name="priority" sortable="true" filter="true"/>
+                <column name="status" sortable="true" filter="true"/>
+                <column name="totalAmount" sortable="true" filter="true"/>
+                <column name="currency" sortable="true" filter="true"/>
+                <column name="expectedDeliveryDate" sortable="true" filter="true"/>
+                <column name="notes" sortable="true" filter="true"/>
+            </columns>
+            <toolbar>
+                <button name="add" action="navigateTo" params="{view: 'purchaseRequestDetails', mode: 'new'}"/>
+                <button name="edit" action="navigateTo" params="{view: 'purchaseRequestDetails', mode: 'edit'}" condition="singleSelected"/>
+                <button name="delete" action="delete" condition="singleSelected"/>
+                <button name="refresh" action="refresh"/>
+            </toolbar>
+        </table>
+    </page>
+
+</view>

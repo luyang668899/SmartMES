@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>supplyChain.supplierRating.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="supplier" type="manyToOne" model="supplier" required="true"/>
+
+        <field name="ratingDate" type="date" required="true"/>
+
+        <field name="rater" type="manyToOne" model="staff" plugin="basic" required="true"/>
+
+        <field name="qualityRating" type="integer" required="true">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1</parameter>
+                    <parameter name="max">5</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="deliveryRating" type="integer" required="true">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1</parameter>
+                    <parameter name="max">5</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="priceRating" type="integer" required="true">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1</parameter>
+                    <parameter name="max">5</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="serviceRating" type="integer" required="true">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1</parameter>
+                    <parameter name="max">5</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="overallRating" type="decimal" required="true">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1.0</parameter>
+                    <parameter name="max">5.0</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="purchaseOrder" type="manyToOne" model="purchaseOrder"/>
+
+        <field name="reason" type="text" required="true"/>
+
+        <field name="strengths" type="text"/>
+
+        <field name="improvementAreas" type="text"/>
+
+        <field name="followUpActions" type="text"/>
+
+        <field name="nextReviewDate" type="date"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="supplier"/>
+            <field name="ratingDate"/>
+            <field name="overallRating"/>
+            <field name="rater"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="supplier"/>
+            <field name="ratingDate"/>
+            <field name="rater"/>
+            <field name="qualityRating"/>
+            <field name="deliveryRating"/>
+            <field name="priceRating"/>
+            <field name="serviceRating"/>
+            <field name="overallRating"/>
+            <field name="purchaseOrder"/>
+            <field name="reason"/>
+            <field name="strengths"/>
+            <field name="improvementAreas"/>
+            <field name="followUpActions"/>
+            <field name="nextReviewDate"/>
+        </view>
+
+    </views>
+
+</model>

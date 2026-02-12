@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <page>
+        <title>Equipment Details</title>
+
+        <form name="equipment" model="equipment" view="form">
+            <fields>
+                <field name="number" required="true"/>
+                <field name="name" required="true"/>
+                <field name="type" required="true"/>
+                <field name="model"/>
+                <field name="manufacturer"/>
+                <field name="serialNumber"/>
+                <field name="installationDate" type="date"/>
+                <field name="workstation"/>
+                <field name="description" type="textarea"/>
+            </fields>
+
+            <notebook>
+                <page name="connection" title="Connection Settings">
+                    <fields>
+                        <field name="ipAddress"/>
+                        <field name="port"/>
+                        <field name="protocol"/>
+                        <field name="enabled" type="boolean"/>
+                    </fields>
+                </page>
+
+                <page name="status" title="Status">
+                    <fields>
+                        <field name="status" required="true">
+                            <option name="IDLE" color="#95a5a6"/>
+                            <option name="PRODUCING" color="#27ae60"/>
+                            <option name="DOWN" color="#e74c3c"/>
+                            <option name="MAINTENANCE" color="#f39c12"/>
+                        </field>
+                    </fields>
+                </page>
+
+                <page name="connections" title="Connection History">
+                    <table name="connections" model="equipmentConnection" filter="equipment = #this">
+                        <columns>
+                            <column name="connectionTime"/>
+                            <column name="disconnectionTime"/>
+                            <column name="status">
+                                <option name="CONNECTING" color="#f39c12"/>
+                                <option name="CONNECTED" color="#27ae60"/>
+                                <option name="DISCONNECTING" color="#f39c12"/>
+                                <option name="DISCONNECTED" color="#95a5a6"/>
+                                <option name="ERROR" color="#e74c3c"/>
+                            </column>
+                            <column name="responseTime"/>
+                            <column name="dataReceived"/>
+                            <column name="dataSent"/>
+                        </columns>
+                    </table>
+                </page>
+
+                <page name="oeeData" title="OEE Data">
+                    <table name="oeeData" model="oeeData" filter="equipment = #this">
+                        <columns>
+                            <column name="timestamp"/>
+                            <column name="oee"/>
+                            <column name="availability"/>
+                            <column name="performance"/>
+                            <column name="quality"/>
+                            <column name="goodCount"/>
+                            <column name="totalCount"/>
+                            <column name="downtimeMinutes"/>
+                        </columns>
+                    </table>
+                </page>
+
+            </notebook>
+
+            <actions>
+                <action name="save"/>
+                <action name="saveNew"/>
+                <action name="cancel"/>
+                <action name="delete"/>
+            </actions>
+
+        </form>
+
+    </page>
+
+</view>

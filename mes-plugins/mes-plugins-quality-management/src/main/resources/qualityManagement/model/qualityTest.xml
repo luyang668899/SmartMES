@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>qualityManagement.qualityTest.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="name" type="string" required="true">
+            <message>
+                <key>qualityManagement.qualityTest.name.error.empty</key>
+                <message>Name cannot be empty</message>
+            </message>
+        </field>
+
+        <field name="description" type="text"/>
+
+        <field name="testType" type="string" required="true">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">Visual,Dimensional,Functional,Material,Performance,Durability,Safety</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="product" type="manyToOne" model="product" plugin="basic"/>
+
+        <field name="isActive" type="boolean" default="true"/>
+
+        <field name="frequency" type="string">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">Every,PerBatch,PerShift,PerDay,PerWeek,PerMonth</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="sampleSize" type="integer"/>
+
+        <field name="acceptanceCriteria" type="text" required="true"/>
+
+        <field name="rejectionCriteria" type="text" required="true"/>
+
+        <field name="testEquipment" type="string"/>
+
+        <field name="testProcedure" type="text"/>
+
+        <field name="responsibleDepartment" type="string"/>
+
+        <field name="estimatedDuration" type="integer"/>
+
+        <field name="requiredSkills" type="text"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="testType"/>
+            <field name="product"/>
+            <field name="isActive"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="testType"/>
+            <field name="product"/>
+            <field name="isActive"/>
+            <field name="frequency"/>
+            <field name="sampleSize"/>
+            <field name="acceptanceCriteria"/>
+            <field name="rejectionCriteria"/>
+            <field name="testEquipment"/>
+            <field name="testProcedure"/>
+            <field name="responsibleDepartment"/>
+            <field name="estimatedDuration"/>
+            <field name="requiredSkills"/>
+        </view>
+
+    </views>
+
+</model>

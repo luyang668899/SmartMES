@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>supplyChain.purchaseRequest.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="name" type="string" required="true">
+            <message>
+                <key>supplyChain.purchaseRequest.name.error.empty</key>
+                <message>Name cannot be empty</message>
+            </message>
+        </field>
+
+        <field name="requestDate" type="dateTime" required="true" default="now"/>
+
+        <field name="requester" type="manyToOne" model="staff" plugin="basic" required="true"/>
+
+        <field name="department" type="string" required="true"/>
+
+        <field name="priority" type="string" required="true">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">Low,Medium,High,Urgent</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="status" type="string" required="true" default="DRAFT">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">DRAFT,APPROVED,REJECTED,PENDING_APPROVAL,IN_PROCESS,CANCELLED</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="deliveryDate" type="date" required="true"/>
+
+        <field name="justification" type="text" required="true"/>
+
+        <field name="notes" type="text"/>
+
+        <field name="approvedBy" type="manyToOne" model="staff" plugin="basic"/>
+
+        <field name="approvalDate" type="dateTime"/>
+
+        <field name="approvalNotes" type="text"/>
+
+        <field name="estimatedTotalAmount" type="decimal"/>
+
+        <field name="currency" type="manyToOne" model="currency" plugin="basic"/>
+
+        <field name="relatedProductionOrder" type="manyToOne" model="order" plugin="orders"/>
+
+        <field name="relatedWorkOrder" type="manyToOne" model="workOrder" plugin="workPlans"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="requestDate"/>
+            <field name="status"/>
+            <field name="priority"/>
+            <field name="requester"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="name"/>
+            <field name="requestDate"/>
+            <field name="requester"/>
+            <field name="department"/>
+            <field name="priority"/>
+            <field name="status"/>
+            <field name="deliveryDate"/>
+            <field name="justification"/>
+            <field name="notes"/>
+            <field name="approvedBy"/>
+            <field name="approvalDate"/>
+            <field name="approvalNotes"/>
+            <field name="estimatedTotalAmount"/>
+            <field name="currency"/>
+            <field name="relatedProductionOrder"/>
+            <field name="relatedWorkOrder"/>
+        </view>
+
+    </views>
+
+</model>

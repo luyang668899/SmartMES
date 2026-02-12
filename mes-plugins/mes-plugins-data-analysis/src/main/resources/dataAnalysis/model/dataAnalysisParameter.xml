@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="dataAnalysisParameter" package="dataAnalysis" singleton="true">
+        <field name="id" type="id"/>
+        
+        <!-- 仪表板参数 -->
+        <field name="defaultDashboardType" type="string" length="50" defaultValue="PRODUCTION">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>PRODUCTION</value>
+                    <value>QUALITY</value>
+                    <value>SUPPLY_CHAIN</value>
+                    <value>FINANCIAL</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="maxDashboardsPerUser" type="integer" defaultValue="10">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- KPI参数 -->
+        <field name="kpiCalculationEnabled" type="boolean" defaultValue="true"/>
+        <field name="kpiDataRetentionDays" type="integer" defaultValue="90">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 报告参数 -->
+        <field name="reportGenerationEnabled" type="boolean" defaultValue="true"/>
+        <field name="maxReportExecutionTime" type="integer" defaultValue="300">
+            <validations>
+                <min value="10"/>
+            </validations>
+        </field>
+        <field name="reportOutputDirectory" type="string" length="500" defaultValue="/tmp/reports"/>
+        
+        <!-- 数据仓库参数 -->
+        <field name="dataWarehouseEnabled" type="boolean" defaultValue="false"/>
+        <field name="dataWarehouseConnectionString" type="string" length="1000"/>
+        <field name="dataWarehouseUsername" type="string" length="255"/>
+        <field name="dataWarehousePassword" type="string" length="255"/>
+        
+        <!-- 系统参数 -->
+        <field name="enableRealTimeAnalytics" type="boolean" defaultValue="false"/>
+        <field name="enableEmailNotifications" type="boolean" defaultValue="true"/>
+        <field name="notificationEmail" type="string" length="255"/>
+        
+        <!-- 审计字段 -->
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="defaultDashboardType" label="dataAnalysis.dataAnalysisParameter.field.defaultDashboardType"/>
+                <field name="maxDashboardsPerUser" label="dataAnalysis.dataAnalysisParameter.field.maxDashboardsPerUser"/>
+                <field name="kpiCalculationEnabled" label="dataAnalysis.dataAnalysisParameter.field.kpiCalculationEnabled"/>
+                <field name="kpiDataRetentionDays" label="dataAnalysis.dataAnalysisParameter.field.kpiDataRetentionDays"/>
+                <field name="reportGenerationEnabled" label="dataAnalysis.dataAnalysisParameter.field.reportGenerationEnabled"/>
+                <field name="maxReportExecutionTime" label="dataAnalysis.dataAnalysisParameter.field.maxReportExecutionTime"/>
+                <field name="reportOutputDirectory" label="dataAnalysis.dataAnalysisParameter.field.reportOutputDirectory"/>
+                <field name="dataWarehouseEnabled" label="dataAnalysis.dataAnalysisParameter.field.dataWarehouseEnabled"/>
+                <field name="dataWarehouseConnectionString" label="dataAnalysis.dataAnalysisParameter.field.dataWarehouseConnectionString"/>
+                <field name="dataWarehouseUsername" label="dataAnalysis.dataAnalysisParameter.field.dataWarehouseUsername"/>
+                <field name="dataWarehousePassword" label="dataAnalysis.dataAnalysisParameter.field.dataWarehousePassword"/>
+                <field name="enableRealTimeAnalytics" label="dataAnalysis.dataAnalysisParameter.field.enableRealTimeAnalytics"/>
+                <field name="enableEmailNotifications" label="dataAnalysis.dataAnalysisParameter.field.enableEmailNotifications"/>
+                <field name="notificationEmail" label="dataAnalysis.dataAnalysisParameter.field.notificationEmail"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="enableMobileApp" type="boolean" required="true" default="true"/>
+        <field name="enableShopFloorDataCollection" type="boolean" required="true" default="true"/>
+        <field name="enableRealTimeNotifications" type="boolean" required="true" default="true"/>
+        <field name="enableGeolocation" type="boolean" default="false"/>
+        <field name="enableBarcodeScanning" type="boolean" required="true" default="true"/>
+        <field name="enableQRCodeScanning" type="boolean" required="true" default="true"/>
+        <field name="enableOfflineMode" type="boolean" required="true" default="true"/>
+        <field name="maxOfflineDataSize" type="integer" default="1000"/>
+        <field name="dataSyncInterval" type="integer" default="60"/>
+        <field name="notificationSyncInterval" type="integer" default="30"/>
+        <field name="sessionTimeout" type="integer" default="3600"/>
+        <field name="maxDevicesPerUser" type="integer" default="2"/>
+        <field name="allowedDeviceTypes" type="string">
+            <constraints>
+                <notEmpty/>
+            </constraints>
+        </field>
+        <field name="apiKey" type="string"/>
+        <field name="apiUrl" type="string"/>
+        <field name="sslEnabled" type="boolean" default="true"/>
+        <field name="debugMode" type="boolean" default="false"/>
+        <field name="notes" type="text"/>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="enableMobileApp"/>
+            <field name="enableShopFloorDataCollection"/>
+            <field name="enableRealTimeNotifications"/>
+            <field name="enableOfflineMode"/>
+        </view>
+        <view name="form">
+            <field name="enableMobileApp"/>
+            <field name="enableShopFloorDataCollection"/>
+            <field name="enableRealTimeNotifications"/>
+            <field name="enableGeolocation"/>
+            <field name="enableBarcodeScanning"/>
+            <field name="enableQRCodeScanning"/>
+            <field name="enableOfflineMode"/>
+            <field name="maxOfflineDataSize"/>
+            <field name="dataSyncInterval"/>
+            <field name="notificationSyncInterval"/>
+            <field name="sessionTimeout"/>
+            <field name="maxDevicesPerUser"/>
+            <field name="allowedDeviceTypes"/>
+            <field name="apiKey"/>
+            <field name="apiUrl"/>
+            <field name="sslEnabled"/>
+            <field name="debugMode"/>
+            <field name="notes"/>
+        </view>
+    </views>
+
+</model>

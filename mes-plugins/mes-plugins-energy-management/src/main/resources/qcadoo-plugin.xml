@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="energyManagement" group="energyManagement" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Energy Management</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Energy management functionality including energy consumption monitoring, analysis, and optimization</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_ENERGY_MANAGEMENT"/>
+        
+        <model:model model="energyMeter" resource="energyManagement/model/energyMeter.xml"/>
+        <model:model model="energyConsumption" resource="energyManagement/model/energyConsumption.xml"/>
+        <model:model model="energyTariff" resource="energyManagement/model/energyTariff.xml"/>
+        <model:model model="energyReport" resource="energyManagement/model/energyReport.xml"/>
+        <model:model model="energyManagementParameter" resource="energyManagement/model/energyManagementParameter.xml"/>
+        
+        <menu:menu-category name="energyManagement" defaultAuthorizationRole="ROLE_ENERGY_MANAGEMENT"/>
+        
+        <menu:menu-item name="energyMetersList" category="energyManagement" view="energyMetersList" defaultAuthorizationRole="ROLE_ENERGY_MANAGEMENT"/>
+        <menu:menu-item name="energyConsumptionList" category="energyManagement" view="energyConsumptionList" defaultAuthorizationRole="ROLE_ENERGY_MANAGEMENT"/>
+        <menu:menu-item name="energyTariffsList" category="energyManagement" view="energyTariffsList" defaultAuthorizationRole="ROLE_ENERGY_MANAGEMENT"/>
+        <menu:menu-item name="energyReportsList" category="energyManagement" view="energyReportsList" defaultAuthorizationRole="ROLE_ENERGY_MANAGEMENT"/>
+        <menu:menu-item name="energyManagementParameters" category="energyManagement" view="energyManagementParameters" defaultAuthorizationRole="ROLE_ENERGY_MANAGEMENT"/>
+        
+        <view:view resource="energyManagement/view/energyMetersList.xml"/>
+        <view:view resource="energyManagement/view/energyMeterDetails.xml"/>
+        <view:view resource="energyManagement/view/energyConsumptionList.xml"/>
+        <view:view resource="energyManagement/view/energyConsumptionDetails.xml"/>
+        <view:view resource="energyManagement/view/energyTariffsList.xml"/>
+        <view:view resource="energyManagement/view/energyTariffDetails.xml"/>
+        <view:view resource="energyManagement/view/energyReportsList.xml"/>
+        <view:view resource="energyManagement/view/energyReportDetails.xml"/>
+        <view:view resource="energyManagement/view/energyManagementParameters.xml"/>
+        
+        <custom:custom class="com.qcadoo.mes.energyManagement.EnergyManagementOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

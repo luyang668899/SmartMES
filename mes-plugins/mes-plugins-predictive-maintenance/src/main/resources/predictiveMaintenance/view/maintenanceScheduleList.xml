@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://www.qcadoo.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.qcadoo.com/model view.xsd">
+    <page>
+        <title>Maintenance Schedule List</title>
+        <grid name="maintenanceScheduleGrid" entity="predictiveMaintenance.maintenanceSchedule">
+            <columns>
+                <column name="equipmentHealth" type="manyToOne" width="200"/>
+                <column name="scheduleType" type="string" width="150"/>
+                <column name="scheduledDate" type="dateTime" width="150"/>
+                <column name="estimatedDuration" type="integer" width="100"/>
+                <column name="status" type="string" width="100"/>
+                <column name="priority" type="integer" width="100"/>
+                <column name="estimatedCost" type="decimal" width="100"/>
+                <column name="assignedTo" type="manyToOne" width="150"/>
+            </columns>
+            <actions>
+                <action name="view" type="navigate" url="/page/predictiveMaintenance/maintenanceScheduleDetails.html?recordId={id}"/>
+                <action name="add" type="navigate" url="/page/predictiveMaintenance/maintenanceScheduleDetails.html"/>
+                <action name="delete" type="delete"/>
+            </actions>
+            <filters>
+                <filter name="status" type="string"/>
+                <filter name="scheduleType" type="string"/>
+                <filter name="priority" type="integer"/>
+                <filter name="equipmentHealth" type="manyToOne" />
+                <filter name="assignedTo" type="manyToOne" />
+            </filters>
+            <sorts>
+                <sort name="priority" direction="desc"/>
+                <sort name="scheduledDate" direction="asc"/>
+            </sorts>
+        </grid>
+    </page>
+</view>

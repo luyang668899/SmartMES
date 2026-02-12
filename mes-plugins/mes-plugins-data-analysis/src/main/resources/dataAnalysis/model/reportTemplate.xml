@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="reportTemplate" package="dataAnalysis">
+        <field name="id" type="id"/>
+        <field name="code" type="string" length="100" required="true"/>
+        <field name="name" type="string" length="255" required="true"/>
+        <field name="description" type="string" length="1000"/>
+        <field name="type" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>PRODUCTION</value>
+                    <value>QUALITY</value>
+                    <value>SUPPLY_CHAIN</value>
+                    <value>FINANCIAL</value>
+                    <value>KPI</value>
+                    <value>CUSTOM</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="format" type="string" length="50" required="true" defaultValue="PDF">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>PDF</value>
+                    <value>EXCEL</value>
+                    <value>CSV</value>
+                    <value>HTML</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="templatePath" type="string" length="500" required="true"/>
+        <field name="dataQuery" type="string" length="4000"/>
+        <field name="parameters" type="string" length="2000"/>
+        <field name="scheduling" type="string" length="2000"/>
+        <field name="recipients" type="string" length="2000"/>
+        <field name="status" type="string" length="50" required="true" defaultValue="ACTIVE">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>ACTIVE</value>
+                    <value>INACTIVE</value>
+                    <value>ARCHIVED</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="type"/>
+                <field name="format"/>
+                <field name="templatePath"/>
+                <field name="dataQuery"/>
+                <field name="parameters"/>
+                <field name="scheduling"/>
+                <field name="recipients"/>
+                <field name="status"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

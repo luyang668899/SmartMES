@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="dataAnalysisParameters">
+        <fields>
+            <field name="dashboardRefreshInterval" />
+            <field name="kpiCalculationInterval" />
+            <field name="reportDefaultFormat" />
+            <field name="dataRetentionPeriod" />
+            <field name="enableRealTimeUpdates" />
+        </fields>
+        <actions>
+            <action name="save" type="save" />
+            <action name="cancel" type="cancel" />
+        </actions>
+    </form>
+
+</view>

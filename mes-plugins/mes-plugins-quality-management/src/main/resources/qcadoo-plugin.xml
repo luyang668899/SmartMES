@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="qualityManagement" group="qualityManagement" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Quality Management</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Quality management functionality including SPC and defect management</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_QUALITY_MANAGEMENT"/>
+        <security:role identifier="ROLE_SPC_MONITORING"/>
+        <security:role identifier="ROLE_DEFECT_MANAGEMENT"/>
+
+        <model:model model="qualityControl" resource="qualityManagement/model/qualityControl.xml"/>
+        <model:model model="spcData" resource="qualityManagement/model/spcData.xml"/>
+        <model:model model="defect" resource="qualityManagement/model/defect.xml"/>
+        <model:model model="defectType" resource="qualityManagement/model/defectType.xml"/>
+        <model:model model="qualityTest" resource="qualityManagement/model/qualityTest.xml"/>
+        <model:model model="qualityTestResult" resource="qualityManagement/model/qualityTestResult.xml"/>
+
+        <menu:menu-category name="quality" defaultAuthorizationRole="ROLE_QUALITY_MANAGEMENT"/>
+
+        <menu:menu-item name="qualityControlList" category="quality" view="qualityControlList" defaultAuthorizationRole="ROLE_QUALITY_MANAGEMENT"/>
+        <menu:menu-item name="spcMonitoring" category="quality" view="spcMonitoring" defaultAuthorizationRole="ROLE_SPC_MONITORING"/>
+        <menu:menu-item name="defectList" category="quality" view="defectList" defaultAuthorizationRole="ROLE_DEFECT_MANAGEMENT"/>
+        <menu:menu-item name="defectTypeList" category="quality" view="defectTypeList" defaultAuthorizationRole="ROLE_DEFECT_MANAGEMENT"/>
+        <menu:menu-item name="qualityTestList" category="quality" view="qualityTestList" defaultAuthorizationRole="ROLE_QUALITY_MANAGEMENT"/>
+
+        <view:view resource="qualityManagement/view/qualityControlList.xml"/>
+        <view:view resource="qualityManagement/view/qualityControlDetails.xml"/>
+        <view:view resource="qualityManagement/view/spcMonitoring.xml"/>
+        <view:view resource="qualityManagement/view/defectList.xml"/>
+        <view:view resource="qualityManagement/view/defectDetails.xml"/>
+        <view:view resource="qualityManagement/view/defectTypeList.xml"/>
+        <view:view resource="qualityManagement/view/defectTypeDetails.xml"/>
+        <view:view resource="qualityManagement/view/qualityTestList.xml"/>
+        <view:view resource="qualityManagement/view/qualityTestDetails.xml"/>
+        <view:view resource="qualityManagement/view/qualityTestResultList.xml"/>
+        <view:view resource="qualityManagement/view/qualityTestResultDetails.xml"/>
+
+        <custom:custom class="com.qcadoo.mes.qualityManagement.QualityManagementOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

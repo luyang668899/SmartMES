@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="name" type="string" required="true"/>
+        <field name="reportId" type="string" required="true" unique="true"/>
+        <field name="reportType" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Daily</list>
+                    <list>Weekly</list>
+                    <list>Monthly</list>
+                    <list>Quarterly</list>
+                    <list>Annual</list>
+                    <list>Custom</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="startDate" type="date" required="true"/>
+        <field name="endDate" type="date" required="true"/>
+        <field name="electricityConsumption" type="decimal"/>
+        <field name="electricityCost" type="decimal"/>
+        <field name="gasConsumption" type="decimal"/>
+        <field name="gasCost" type="decimal"/>
+        <field name="waterConsumption" type="decimal"/>
+        <field name="waterCost" type="decimal"/>
+        <field name="steamConsumption" type="decimal"/>
+        <field name="steamCost" type="decimal"/>
+        <field name="compressedAirConsumption" type="decimal"/>
+        <field name="compressedAirCost" type="decimal"/>
+        <field name="totalConsumption" type="decimal"/>
+        <field name="totalCost" type="decimal"/>
+        <field name="currency" type="string" required="true"/>
+        <field name="generationDate" type="dateTime" required="true"/>
+        <field name="generatedBy" type="string"/>
+        <field name="status" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Draft</list>
+                    <list>Generated</list>
+                    <list>Approved</list>
+                    <list>Rejected</list>
+                    <list>Archived</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="notes" type="text"/>
+        <field name="recommendations" type="text"/>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="name"/>
+            <field name="reportId"/>
+            <field name="reportType"/>
+            <field name="startDate"/>
+            <field name="endDate"/>
+            <field name="totalConsumption"/>
+            <field name="totalCost"/>
+            <field name="currency"/>
+            <field name="generationDate"/>
+            <field name="status"/>
+        </view>
+        <view name="form">
+            <field name="name"/>
+            <field name="reportId"/>
+            <field name="reportType"/>
+            <field name="startDate"/>
+            <field name="endDate"/>
+            <field name="electricityConsumption"/>
+            <field name="electricityCost"/>
+            <field name="gasConsumption"/>
+            <field name="gasCost"/>
+            <field name="waterConsumption"/>
+            <field name="waterCost"/>
+            <field name="steamConsumption"/>
+            <field name="steamCost"/>
+            <field name="compressedAirConsumption"/>
+            <field name="compressedAirCost"/>
+            <field name="totalConsumption"/>
+            <field name="totalCost"/>
+            <field name="currency"/>
+            <field name="generationDate"/>
+            <field name="generatedBy"/>
+            <field name="status"/>
+            <field name="notes"/>
+            <field name="recommendations"/>
+        </view>
+    </views>
+
+</model>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.qcadoo.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.qcadoo.com/model model.xsd">
+    <entities>
+        <entity name="maintenanceSchedule" package="com.qcadoo.mes.predictiveMaintenance" extends="basic">
+            <fields>
+                <field name="equipmentHealth" type="manyToOne" searchable="true" required="true">
+                    <manyToOne>
+                        <field name="mappedBy" value="maintenanceSchedules"/>
+                        <field name="toEntityName" value="predictiveMaintenance.equipmentHealth"/>
+                    </manyToOne>
+                </field>
+                <field name="scheduleType" type="string" required="true">
+                    <constraints>
+                        <notBlank/>
+                        <pattern>^(PREVENTIVE|PREDICTIVE|CORRECTIVE)$</pattern>
+                    </constraints>
+                </field>
+                <field name="scheduledDate" type="dateTime" required="true"/>
+                <field name="estimatedDuration" type="integer" required="true">
+                    <constraints>
+                        <notBlank/>
+                    </constraints>
+                </field>
+                <field name="status" type="string" required="true">
+                    <constraints>
+                        <notBlank/>
+                        <pattern>^(PLANNED|IN_PROGRESS|COMPLETED|CANCELLED)$</pattern>
+                    </constraints>
+                </field>
+                <field name="priority" type="integer" min="1" max="5">
+                    <constraints>
+                        <notBlank/>
+                    </constraints>
+                </field>
+                <field name="description" type="text"/>
+                <field name="assignedTo" type="manyToOne">
+                    <manyToOne>
+                        <field name="mappedBy" value="assignedMaintenanceSchedules"/>
+                        <field name="toEntityName" value="basic.employee"/>
+                    </manyToOne>
+                </field>
+                <field name="estimatedCost" type="decimal" min="0">
+                    <constraints>
+                        <notBlank/>
+                    </constraints>
+                </field>
+                <field name="actualCost" type="decimal" min="0"/>
+                <field name="actualDuration" type="integer"/>
+                <field name="completionDate" type="dateTime"/>
+                <field name="notes" type="text"/>
+            </fields>
+        </entity>
+        <entity name="maintenanceTask" package="com.qcadoo.mes.predictiveMaintenance" extends="basic">
+            <fields>
+                <field name="maintenanceSchedule" type="manyToOne" searchable="true" required="true">
+                    <manyToOne>
+                        <field name="mappedBy" value="tasks"/>
+                        <field name="toEntityName" value="predictiveMaintenance.maintenanceSchedule"/>
+                    </manyToOne>
+                </field>
+                <field name="name" type="string" required="true">
+                    <constraints>
+                        <notBlank/>
+                    </constraints>
+                </field>
+                <field name="description" type="text"/>
+                <field name="status" type="string" required="true">
+                    <constraints>
+                        <notBlank/>
+                        <pattern>^(PENDING|IN_PROGRESS|COMPLETED)$</pattern>
+                    </constraints>
+                </field>
+                <field name="estimatedTime" type="integer" required="true">
+                    <constraints>
+                        <notBlank/>
+                    </constraints>
+                </field>
+                <field name="actualTime" type="integer"/>
+                <field name="assignedTo" type="manyToOne">
+                    <manyToOne>
+                        <field name="mappedBy" value="assignedMaintenanceTasks"/>
+                        <field name="toEntityName" value="basic.employee"/>
+                    </manyToOne>
+                </field>
+            </fields>
+        </entity>
+    </entities>
+</model>

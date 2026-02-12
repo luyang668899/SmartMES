@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="supplyChain" group="supplyChain" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Supply Chain</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Supply chain management functionality including supplier management and procurement optimization</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_SUPPLY_CHAIN"/>
+        <security:role identifier="ROLE_SUPPLIER_MANAGEMENT"/>
+        <security:role identifier="ROLE_PROCUREMENT_OPTIMIZATION"/>
+
+        <model:model model="supplier" resource="supplyChain/model/supplier.xml"/>
+        <model:model model="supplierRating" resource="supplyChain/model/supplierRating.xml"/>
+        <model:model model="purchaseRequest" resource="supplyChain/model/purchaseRequest.xml"/>
+        <model:model model="purchaseOrder" resource="supplyChain/model/purchaseOrder.xml"/>
+        <model:model model="purchaseOrderItem" resource="supplyChain/model/purchaseOrderItem.xml"/>
+        <model:model model="supplierProduct" resource="supplyChain/model/supplierProduct.xml"/>
+        <model:model model="supplyChainParameter" resource="supplyChain/model/supplyChainParameter.xml"/>
+
+        <menu:menu-category name="supplyChain" defaultAuthorizationRole="ROLE_SUPPLY_CHAIN"/>
+
+        <menu:menu-item name="supplierList" category="supplyChain" view="supplierList" defaultAuthorizationRole="ROLE_SUPPLIER_MANAGEMENT"/>
+        <menu:menu-item name="supplierRatingList" category="supplyChain" view="supplierRatingList" defaultAuthorizationRole="ROLE_SUPPLIER_MANAGEMENT"/>
+        <menu:menu-item name="purchaseRequestList" category="supplyChain" view="purchaseRequestList" defaultAuthorizationRole="ROLE_SUPPLY_CHAIN"/>
+        <menu:menu-item name="purchaseOrderList" category="supplyChain" view="purchaseOrderList" defaultAuthorizationRole="ROLE_SUPPLY_CHAIN"/>
+        <menu:menu-item name="supplierProductList" category="supplyChain" view="supplierProductList" defaultAuthorizationRole="ROLE_SUPPLY_CHAIN"/>
+        <menu:menu-item name="supplyChainParameters" category="supplyChain" view="supplyChainParameters" defaultAuthorizationRole="ROLE_SUPPLY_CHAIN"/>
+
+        <view:view resource="supplyChain/view/supplierList.xml"/>
+        <view:view resource="supplyChain/view/supplierDetails.xml"/>
+        <view:view resource="supplyChain/view/supplierRatingList.xml"/>
+        <view:view resource="supplyChain/view/supplierRatingDetails.xml"/>
+        <view:view resource="supplyChain/view/purchaseRequestList.xml"/>
+        <view:view resource="supplyChain/view/purchaseRequestDetails.xml"/>
+        <view:view resource="supplyChain/view/purchaseOrderList.xml"/>
+        <view:view resource="supplyChain/view/purchaseOrderDetails.xml"/>
+        <view:view resource="supplyChain/view/supplierProductList.xml"/>
+        <view:view resource="supplyChain/view/supplierProductDetails.xml"/>
+        <view:view resource="supplyChain/view/supplyChainParameters.xml"/>
+
+        <custom:custom class="com.qcadoo.mes.supplyChain.SupplyChainOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

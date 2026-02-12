@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <page>
+        <title>Equipment List</title>
+
+        <form>
+            <grid>
+                <fields>
+                    <field name="number" lookup="true" filter="true"/>
+                    <field name="name" lookup="true" filter="true"/>
+                    <field name="type" lookup="true" filter="true"/>
+                    <field name="status" lookup="true" filter="true"/>
+                    <field name="workstation" lookup="true" filter="true"/>
+                </fields>
+            </grid>
+        </form>
+
+        <table name="equipment" model="equipment" view="tree">
+            <actions>
+                <action name="add"/>
+                <action name="edit"/>
+                <action name="delete"/>
+                <action name="refresh"/>
+                <action name="generate"/>
+                <action name="export"/>
+            </actions>
+
+            <columns>
+                <column name="number" sortable="true"/>
+                <column name="name" sortable="true"/>
+                <column name="type" sortable="true"/>
+                <column name="model"/>
+                <column name="manufacturer"/>
+                <column name="status" sortable="true">
+                    <option name="IDLE" color="#95a5a6"/>
+                    <option name="PRODUCING" color="#27ae60"/>
+                    <option name="DOWN" color="#e74c3c"/>
+                    <option name="MAINTENANCE" color="#f39c12"/>
+                </column>
+                <column name="workstation"/>
+                <column name="enabled" type="boolean"/>
+                <column name="ipAddress"/>
+                <column name="port"/>
+                <column name="protocol"/>
+            </columns>
+
+            <rightFragments>
+                <fragment name="gridSize"/>
+                <fragment name="refreshInterval"/>
+                <fragment name="export"/>
+            </rightFragments>
+
+        </table>
+
+    </page>
+
+</view>

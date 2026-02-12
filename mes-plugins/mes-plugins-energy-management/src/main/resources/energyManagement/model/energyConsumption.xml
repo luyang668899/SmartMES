@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="energyMeter" type="string" required="true"/>
+        <field name="meterType" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Electricity</list>
+                    <list>Gas</list>
+                    <list>Water</list>
+                    <list>Steam</list>
+                    <list>Compressed Air</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="startReading" type="decimal" required="true"/>
+        <field name="endReading" type="decimal" required="true"/>
+        <field name="consumption" type="decimal" required="true"/>
+        <field name="unit" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>kWh</list>
+                    <list>M3</list>
+                    <list>L</list>
+                    <list>kg</list>
+                    <list>Nm3</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="startDate" type="dateTime" required="true"/>
+        <field name="endDate" type="dateTime" required="true"/>
+        <field name="duration" type="integer"/>
+        <field name="location" type="string"/>
+        <field name="costCenter" type="string"/>
+        <field name="productionOrder" type="string"/>
+        <field name="equipment" type="string"/>
+        <field name="tariff" type="string"/>
+        <field name="cost" type="decimal"/>
+        <field name="currency" type="string"/>
+        <field name="dataSource" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Automatic</list>
+                    <list>Manual</list>
+                    <list>Imported</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="status" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Recorded</list>
+                    <list>Validated</list>
+                    <list>Rejected</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="notes" type="text"/>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="energyMeter"/>
+            <field name="meterType"/>
+            <field name="consumption"/>
+            <field name="unit"/>
+            <field name="startDate"/>
+            <field name="endDate"/>
+            <field name="status"/>
+            <field name="cost"/>
+        </view>
+        <view name="form">
+            <field name="energyMeter"/>
+            <field name="meterType"/>
+            <field name="startReading"/>
+            <field name="endReading"/>
+            <field name="consumption"/>
+            <field name="unit"/>
+            <field name="startDate"/>
+            <field name="endDate"/>
+            <field name="duration"/>
+            <field name="location"/>
+            <field name="costCenter"/>
+            <field name="productionOrder"/>
+            <field name="equipment"/>
+            <field name="tariff"/>
+            <field name="cost"/>
+            <field name="currency"/>
+            <field name="dataSource"/>
+            <field name="status"/>
+            <field name="notes"/>
+        </view>
+    </views>
+
+</model>

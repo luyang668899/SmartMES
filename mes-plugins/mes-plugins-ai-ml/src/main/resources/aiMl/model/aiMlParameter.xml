@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <entities>
+        <entity name="aiMlParameter" package="com.qcadoo.mes.aiMl">
+            <fields>
+                <field name="name" type="string" required="true" />
+                <field name="value" type="string" />
+                <field name="description" type="string" />
+                <field name="parameterType" type="string" />
+                <field name="isActive" type="boolean" defaultValue="true" />
+            </fields>
+            <constraints>
+                <constraint name="uniqueName" unique="true">
+                    <field name="name" />
+                </constraint>
+            </constraints>
+        </entity>
+    </entities>
+
+</model>

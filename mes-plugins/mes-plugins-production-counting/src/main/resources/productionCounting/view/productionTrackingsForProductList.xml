@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_PRODUCTION_TRACKING" name="productionTrackingsForProductList"
+	  modelName="productionTrackingForProductDto"
+	  menuAccessible="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xmlns="http://schema.qcadoo.org/view"
+	  xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+	<component type="window" name="window" reference="window">
+
+		<ribbon>
+			<template name="standardGridTemplate" includeItems="actions.refresh,genericExport.csv,genericExport.pdf"/>
+		</ribbon>
+
+		<component type="grid" name="productionTrackingsForProductList"
+				   reference="grid">
+			<option type="column" name="number" fields="number" link="true"
+					correspondingView="productionCounting/productionTrackingDetails" correspondingField="productiontracking_id"
+					width="120"/>
+			<option type="column" name="orderNumber" fields="orderNumber"
+					width="200"/>
+			<option type="column" name="technologyOperationComponentNumber"
+					fields="technologyOperationComponentNumber" width="120"/>
+			<option type="column" name="shiftName" fields="shiftName"
+					width="80"/>
+			<option type="column" name="staffName" fields="staffName"
+					width="100"/>
+			<option type="column" name="divisionNumber" fields="divisionNumber"
+					width="80"/>
+			<option type="column" name="productNumber" fields="productNumber"
+					width="100"/>
+			<option type="column" name="producedBatchNumber" fields="producedBatchNumber"
+					width="100"/>
+			<option type="column" name="batchNumber" fields="batchNumber"
+					width="100"/>
+			<option type="column" name="plannedQuantity" fields="plannedQuantity"
+					width="80"/>
+			<option type="column" name="usedQuantity" fields="usedQuantity"
+					width="80"/>
+			<option type="column" name="productUnit" fields="productUnit"
+					width="60"/>
+			<option type="column" name="state" fields="state"
+					width="90"/>
+			<option type="column" name="createDate" fields="createDate"
+					width="100"/>
+			<option type="column" name="lastTracking" fields="lastTracking"
+					 width="60"/>
+			<option type="column" name="timeRangeFrom" fields="timeRangeFrom"
+					width="100"/>
+			<option type="column" name="timeRangeTo" fields="timeRangeTo"
+					width="100"/>
+			<option type="column" name="typeOfRecord" fields="typeOfRecord"
+					width="60"/>
+			<option type="column" name="warehouseNumber" fields="warehouseNumber"
+					width="60"/>
+			<option type="column" name="storageLocationNumber" fields="storageLocationNumber"
+					width="100"/>
+			<option type="column" name="loadUnitNumber" fields="loadUnitNumber"
+					width="60"/>
+			<option type="column" name="typeOfLoadUnit" fields="typeOfLoadUnit"
+					width="80"/>
+			<option type="column" name="orderState" fields="orderState" hidden="true"/>
+			<option type="column" name="productiontracking_id" fields="productiontracking_id" hidden="true"/>
+
+			<option type="order" column="number" direction="asc"/>
+
+			<option type="searchable"
+					value="number,orderNumber,producedBatchNumber,technologyOperationComponentNumber,shiftName,staffName,divisionNumber,
+					productNumber,plannedQuantity,usedQuantity,productUnit,state,createDate,lastTracking,timeRangeFrom,timeRangeTo,batchNumber,typeOfRecord,warehouseNumber,storageLocationNumber,loadUnitNumber,typeOfLoadUnit"/>
+			<option type="orderable"
+					value="number,orderNumber,producedBatchNumber,technologyOperationComponentNumber,shiftName,staffName,divisionNumber,
+					productNumber,plannedQuantity,usedQuantity,productUnit,state,createDate,lastTracking,timeRangeFrom,timeRangeTo,batchNumber,typeOfRecord,warehouseNumber,storageLocationNumber,loadUnitNumber,typeOfLoadUnit"/>
+
+			<option type="footerRow" value="true"/>
+			<option type="columnsToSummary"
+					value="plannedQuantity,usedQuantity"/>
+
+			<option type="fullscreen" value="true"/>
+			<option type="multiselect" value="true"/>
+		</component>
+
+		<option type="fixedHeight" value="true"/>
+		<option type="header" value="false"/>
+	</component>
+
+</view>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="digitalTwinParameter" package="digitalTwin" singleton="true">
+        <field name="id" type="id"/>
+        
+        <!-- 模型参数 -->
+        <field name="modelDirectory" type="string" length="500" defaultValue="/models"/>
+        <field name="maxModelSize" type="integer" defaultValue="1024">
+            <validations>
+                <min value="100"/>
+            </validations>
+        </field>
+        <field name="enableModelValidation" type="boolean" defaultValue="true"/>
+        
+        <!-- 仿真参数 -->
+        <field name="maxConcurrentSimulations" type="integer" defaultValue="5">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="maxSimulationTime" type="integer" defaultValue="600">
+            <validations>
+                <min value="30"/>
+            </validations>
+        </field>
+        <field name="defaultTimeStep" type="integer" defaultValue="1">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 结果参数 -->
+        <field name="resultsDirectory" type="string" length="500" defaultValue="/results"/>
+        <field name="resultsRetentionDays" type="integer" defaultValue="30">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="enableResultCompression" type="boolean" defaultValue="true"/>
+        
+        <!-- 系统参数 -->
+        <field name="enableRealTimeSync" type="boolean" defaultValue="false"/>
+        <field name="syncInterval" type="integer" defaultValue="30">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="enableEmailNotifications" type="boolean" defaultValue="true"/>
+        <field name="notificationEmail" type="string" length="255"/>
+        
+        <!-- 审计字段 -->
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="modelDirectory" label="digitalTwin.digitalTwinParameter.field.modelDirectory"/>
+                <field name="maxModelSize" label="digitalTwin.digitalTwinParameter.field.maxModelSize"/>
+                <field name="enableModelValidation" label="digitalTwin.digitalTwinParameter.field.enableModelValidation"/>
+                <field name="maxConcurrentSimulations" label="digitalTwin.digitalTwinParameter.field.maxConcurrentSimulations"/>
+                <field name="maxSimulationTime" label="digitalTwin.digitalTwinParameter.field.maxSimulationTime"/>
+                <field name="defaultTimeStep" label="digitalTwin.digitalTwinParameter.field.defaultTimeStep"/>
+                <field name="resultsDirectory" label="digitalTwin.digitalTwinParameter.field.resultsDirectory"/>
+                <field name="resultsRetentionDays" label="digitalTwin.digitalTwinParameter.field.resultsRetentionDays"/>
+                <field name="enableResultCompression" label="digitalTwin.digitalTwinParameter.field.enableResultCompression"/>
+                <field name="enableRealTimeSync" label="digitalTwin.digitalTwinParameter.field.enableRealTimeSync"/>
+                <field name="syncInterval" label="digitalTwin.digitalTwinParameter.field.syncInterval"/>
+                <field name="enableEmailNotifications" label="digitalTwin.digitalTwinParameter.field.enableEmailNotifications"/>
+                <field name="notificationEmail" label="digitalTwin.digitalTwinParameter.field.notificationEmail"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>supplyChain.supplierProduct.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="supplier" type="manyToOne" model="supplier" required="true"/>
+
+        <field name="product" type="manyToOne" model="product" plugin="basic" required="true"/>
+
+        <field name="supplierPartNumber" type="string" required="true"/>
+
+        <field name="description" type="text"/>
+
+        <field name="unitPrice" type="decimal" required="true">
+            <validation>
+                <rule type="min">
+                    <parameter name="value">0.0001</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="currency" type="manyToOne" model="currency" plugin="basic" required="true"/>
+
+        <field name="minimumOrderQuantity" type="decimal"/>
+
+        <field name="leadTime" type="integer"/>
+
+        <field name="moq" type="decimal"/>
+
+        <field name="eoq" type="decimal"/>
+
+        <field name="status" type="string" required="true" default="ACTIVE">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">ACTIVE,INACTIVE,DISCONTINUED</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="qualityRating" type="decimal">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1.0</parameter>
+                    <parameter name="max">5.0</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="deliveryRating" type="decimal">
+            <validation>
+                <rule type="range">
+                    <parameter name="min">1.0</parameter>
+                    <parameter name="max">5.0</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="lastPriceUpdate" type="date"/>
+
+        <field name="price有效期" type="date"/>
+
+        <field name="packagingInformation" type="text"/>
+
+        <field name="shippingInformation" type="text"/>
+
+        <field name="notes" type="text"/>
+
+        <field name="createdBy" type="manyToOne" model="staff" plugin="basic" required="true"/>
+
+        <field name="lastModifiedBy" type="manyToOne" model="staff" plugin="basic"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="supplier"/>
+            <field name="product"/>
+            <field name="supplierPartNumber"/>
+            <field name="unitPrice"/>
+            <field name="status"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="supplier"/>
+            <field name="product"/>
+            <field name="supplierPartNumber"/>
+            <field name="description"/>
+            <field name="unitPrice"/>
+            <field name="currency"/>
+            <field name="minimumOrderQuantity"/>
+            <field name="leadTime"/>
+            <field name="moq"/>
+            <field name="eoq"/>
+            <field name="status"/>
+            <field name="qualityRating"/>
+            <field name="deliveryRating"/>
+            <field name="lastPriceUpdate"/>
+            <field name="price有效期"/>
+            <field name="packagingInformation"/>
+            <field name="shippingInformation"/>
+            <field name="notes"/>
+            <field name="createdBy"/>
+            <field name="lastModifiedBy"/>
+        </view>
+
+    </views>
+
+</model>

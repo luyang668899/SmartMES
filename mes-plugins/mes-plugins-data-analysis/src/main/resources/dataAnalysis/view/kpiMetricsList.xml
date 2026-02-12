@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="kpiMetricsList">
+        <fields>
+            <field name="name" />
+            <field name="description" />
+            <field name="metricType" />
+            <field name="targetValue" />
+            <field name="currentValue" />
+            <field name="status" />
+        </fields>
+        <actions>
+            <action name="view" type="view" />
+            <action name="edit" type="edit" />
+            <action name="delete" type="delete" />
+        </actions>
+    </grid>
+
+</view>

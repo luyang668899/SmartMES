@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="mobileAppParametersForm">
+        <fields>
+            <field name="enableMobileApp" type="boolean" required="true"/>
+            <field name="enableShopFloorDataCollection" type="boolean" required="true"/>
+            <field name="enableRealTimeNotifications" type="boolean" required="true"/>
+            <field name="enableGeolocation" type="boolean"/>
+            <field name="enableBarcodeScanning" type="boolean" required="true"/>
+            <field name="enableQRCodeScanning" type="boolean" required="true"/>
+            <field name="enableOfflineMode" type="boolean" required="true"/>
+            <field name="maxOfflineDataSize" type="integer" required="true"/>
+            <field name="dataSyncInterval" type="integer" required="true"/>
+            <field name="notificationSyncInterval" type="integer" required="true"/>
+            <field name="sessionTimeout" type="integer" required="true"/>
+            <field name="maxDevicesPerUser" type="integer" required="true"/>
+            <field name="allowedDeviceTypes" type="text" required="true"/>
+            <field name="apiKey" type="text"/>
+            <field name="apiUrl" type="text"/>
+            <field name="sslEnabled" type="boolean"/>
+            <field name="debugMode" type="boolean"/>
+            <field name="notes" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+        </actions>
+    </form>
+
+</view>

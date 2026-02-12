@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin plugin="digitalTwin" group="digitalTwin" system="false"
+        version="${qcadoo.plugin.version}"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.qcadoo.org/plugin"
+        xmlns:model="http://schema.qcadoo.org/modules/model" xmlns:view="http://schema.qcadoo.org/modules/view"
+        xmlns:menu="http://schema.qcadoo.org/modules/menu"
+        xmlns:security="http://schema.qcadoo.org/modules/security"
+        xmlns:localization="http://schema.qcadoo.org/modules/localization"
+        xmlns:custom="http://schema.qcadoo.org/modules/custom"
+        xsi:schemaLocation="http://schema.qcadoo.org/plugin
+            http://schema.qcadoo.org/plugin.xsd
+            http://schema.qcadoo.org/modules/security
+            http://schema.qcadoo.org/modules/security.xsd
+            http://schema.qcadoo.org/modules/model
+            http://schema.qcadoo.org/modules/model.xsd
+            http://schema.qcadoo.org/modules/view
+            http://schema.qcadoo.org/modules/view.xsd
+            http://schema.qcadoo.org/modules/localization
+            http://schema.qcadoo.org/modules/localization.xsd
+            http://schema.qcadoo.org/modules/menu
+            http://schema.qcadoo.org/modules/menu.xsd
+            http://schema.qcadoo.org/modules/custom
+            http://schema.qcadoo.org/modules/custom.xsd">
+
+    <information>
+        <name>MES - Digital Twin</name>
+        <vendor>
+            <name>Qcadoo Limited</name>
+            <url>http://www.qcadoo.com/</url>
+        </vendor>
+        <description>Digital twin and simulation functionality including production process simulation and 'what-if' analysis</description>
+        <license>AGPL</license>
+    </information>
+
+    <dependencies>
+        <dependency>
+            <plugin>basic</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>orders</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+        <dependency>
+            <plugin>advancedPlanning</plugin>
+            <version>[1.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <security:role identifier="ROLE_DIGITAL_TWIN"/>
+        
+        <model:model model="digitalTwinModel" resource="digitalTwin/model/digitalTwinModel.xml"/>
+        <model:model model="simulationScenario" resource="digitalTwin/model/simulationScenario.xml"/>
+        <model:model model="simulationResult" resource="digitalTwin/model/simulationResult.xml"/>
+        <model:model model="digitalTwinParameter" resource="digitalTwin/model/digitalTwinParameter.xml"/>
+        
+        <menu:menu-category name="digitalTwin" defaultAuthorizationRole="ROLE_DIGITAL_TWIN"/>
+        
+        <menu:menu-item name="digitalTwinModelsList" category="digitalTwin" view="digitalTwinModelsList" defaultAuthorizationRole="ROLE_DIGITAL_TWIN"/>
+        <menu:menu-item name="simulationScenariosList" category="digitalTwin" view="simulationScenariosList" defaultAuthorizationRole="ROLE_DIGITAL_TWIN"/>
+        <menu:menu-item name="simulationResultsList" category="digitalTwin" view="simulationResultsList" defaultAuthorizationRole="ROLE_DIGITAL_TWIN"/>
+        <menu:menu-item name="digitalTwinParameters" category="digitalTwin" view="digitalTwinParameters" defaultAuthorizationRole="ROLE_DIGITAL_TWIN"/>
+        
+        <view:view resource="digitalTwin/view/digitalTwinModelsList.xml"/>
+        <view:view resource="digitalTwin/view/digitalTwinModelDetails.xml"/>
+        <view:view resource="digitalTwin/view/simulationScenariosList.xml"/>
+        <view:view resource="digitalTwin/view/simulationScenarioDetails.xml"/>
+        <view:view resource="digitalTwin/view/simulationResultsList.xml"/>
+        <view:view resource="digitalTwin/view/simulationResultDetails.xml"/>
+        <view:view resource="digitalTwin/view/digitalTwinParameters.xml"/>
+        
+        <custom:custom class="com.qcadoo.mes.digitalTwin.DigitalTwinOnStartupService"/>
+
+    </modules>
+
+    <features>
+        <end-user/>
+    </features>
+
+</plugin>

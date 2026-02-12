@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="energyMeterDetailsForm">
+        <fields>
+            <field name="name" type="text" required="true"/>
+            <field name="meterId" type="text" required="true"/>
+            <field name="meterType" type="select" required="true">
+                <option>Electricity</option>
+                <option>Gas</option>
+                <option>Water</option>
+                <option>Steam</option>
+                <option>Compressed Air</option>
+            </field>
+            <field name="installationDate" type="date" required="true"/>
+            <field name="location" type="text" required="true"/>
+            <field name="status" type="select" required="true">
+                <option>Active</option>
+                <option>Inactive</option>
+                <option>Maintenance</option>
+                <option>Out of Service</option>
+            </field>
+            <field name="lastReading" type="decimal"/>
+            <field name="lastReadingDate" type="datetime"/>
+            <field name="unit" type="select" required="true">
+                <option>kWh</option>
+                <option>M3</option>
+                <option>L</option>
+                <option>kg</option>
+                <option>Nm3</option>
+            </field>
+            <field name="manufacturer" type="text"/>
+            <field name="model" type="text"/>
+            <field name="serialNumber" type="text"/>
+            <field name="communicationProtocol" type="select">
+                <option>Modbus</option>
+                <option>MQTT</option>
+                <option>OPC UA</option>
+                <option>BACnet</option>
+                <option>Manual</option>
+            </field>
+            <field name="ipAddress" type="text"/>
+            <field name="port" type="integer"/>
+            <field name="notes" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </form>
+
+</view>

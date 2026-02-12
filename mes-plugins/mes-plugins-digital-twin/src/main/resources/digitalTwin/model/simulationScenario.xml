@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="simulationScenario" package="digitalTwin">
+        <field name="id" type="id"/>
+        <field name="name" type="string" length="255" required="true"/>
+        <field name="description" type="string" length="1000"/>
+        <field name="digitalTwinModel" type="manyToOne" manyToOne="digitalTwinModel" required="true"/>
+        <field name="scenarioType" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>WHAT_IF</value>
+                    <value>OPTIMIZATION</value>
+                    <value>FAILURE_ANALYSIS</value>
+                    <value>PERFORMANCE_ANALYSIS</value>
+                    <value>CUSTOM</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="parameters" type="string" length="4000" required="true"/>
+        <field name="startDate" type="date" required="true"/>
+        <field name="endDate" type="date" required="true"/>
+        <field name="duration" type="integer"/>
+        <field name="timeStep" type="integer" defaultValue="1">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="maxExecutionTime" type="integer" defaultValue="300">
+            <validations>
+                <min value="10"/>
+            </validations>
+        </field>
+        <field name="status" type="string" length="50" required="true" defaultValue="DRAFT">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>DRAFT</value>
+                    <value>READY</value>
+                    <value>RUNNING</value>
+                    <value>COMPLETED</value>
+                    <value>FAILED</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="lastRun" type="dateTime"/>
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="digitalTwinModel"/>
+                <field name="scenarioType"/>
+                <field name="parameters"/>
+                <field name="startDate"/>
+                <field name="endDate"/>
+                <field name="duration"/>
+                <field name="timeStep"/>
+                <field name="maxExecutionTime"/>
+                <field name="status"/>
+                <field name="lastRun"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

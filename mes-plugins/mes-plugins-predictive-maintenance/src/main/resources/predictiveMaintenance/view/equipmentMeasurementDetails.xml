@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://www.qcadoo.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.qcadoo.com/model view.xsd">
+    <page>
+        <title>Equipment Measurement Details</title>
+        <form name="equipmentMeasurementForm" entity="predictiveMaintenance.equipmentMeasurement">
+            <fields>
+                <field name="equipmentHealth" type="manyToOne" required="true"/>
+                <field name="timestamp" type="dateTime" required="true"/>
+                <field name="sensorType" type="string" required="true"/>
+                <field name="value" type="decimal" required="true"/>
+                <field name="unit" type="string" required="true"/>
+                <field name="isAnomaly" type="boolean"/>
+            </fields>
+            <actions>
+                <action name="save" type="save"/>
+                <action name="cancel" type="navigate" url="/page/predictiveMaintenance/equipmentHealthList.html"/>
+            </actions>
+        </form>
+    </page>
+</view>

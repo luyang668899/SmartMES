@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="notificationDetailsForm">
+        <fields>
+            <field name="title" type="text" required="true"/>
+            <field name="message" type="textarea" required="true"/>
+            <field name="notificationType" type="select" required="true">
+                <option>Information</option>
+                <option>Warning</option>
+                <option>Error</option>
+                <option>Success</option>
+            </field>
+            <field name="priority" type="select" required="true">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Emergency</option>
+            </field>
+            <field name="recipient" type="text" required="true"/>
+            <field name="deviceId" type="text"/>
+            <field name="sentAt" type="datetime" required="true"/>
+            <field name="deliveredAt" type="datetime"/>
+            <field name="readAt" type="datetime"/>
+            <field name="status" type="select" required="true">
+                <option>Pending</option>
+                <option>Delivered</option>
+                <option>Read</option>
+                <option>Failed</option>
+            </field>
+            <field name="relatedEntity" type="text"/>
+            <field name="relatedEntityId" type="integer"/>
+            <field name="actionRequired" type="boolean"/>
+            <field name="actionTaken" type="boolean"/>
+            <field name="notes" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </form>
+
+</view>

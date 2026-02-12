@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="energyTariffsListGrid">
+        <fields>
+            <field name="name"/>
+            <field name="tariffId"/>
+            <field name="energyType"/>
+            <field name="unitPrice"/>
+            <field name="currency"/>
+            <field name="unit"/>
+            <field name="tariffType"/>
+            <field name="startDate"/>
+            <field name="endDate"/>
+            <field name="status"/>
+        </fields>
+        <actions>
+            <action name="view" type="view"/>
+            <action name="edit" type="edit"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </grid>
+
+    <form name="energyTariffsListForm">
+        <fields>
+            <field name="name" type="text"/>
+            <field name="tariffId" type="text"/>
+            <field name="energyType" type="select"/>
+            <field name="tariffType" type="select"/>
+            <field name="status" type="select"/>
+            <field name="startDate" type="dateRange"/>
+        </fields>
+        <actions>
+            <action name="search" type="search"/>
+            <action name="reset" type="reset"/>
+            <action name="add" type="add"/>
+        </actions>
+    </form>
+
+</view>

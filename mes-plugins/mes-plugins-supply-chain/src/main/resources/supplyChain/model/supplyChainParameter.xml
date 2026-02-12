@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="supplyChainParameter" package="supplyChain" singleton="true">
+        <field name="id" type="id"/>
+        
+        <!-- 采购流程参数 -->
+        <field name="defaultLeadTime" type="integer" required="true" defaultValue="7">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="defaultPaymentTerm" type="string" length="50" defaultValue="NET30"/>
+        <field name="defaultCurrency" type="manyToOne" manyToOne="currency"/>
+        <field name="autoApprovalThreshold" type="decimal" scale="2">
+            <validations>
+                <min value="0"/>
+            </validations>
+        </field>
+        
+        <!-- 供应商评估参数 -->
+        <field name="qualityWeight" type="decimal" scale="2" required="true" defaultValue="0.4">
+            <validations>
+                <min value="0"/>
+                <max value="1"/>
+            </validations>
+        </field>
+        <field name="deliveryWeight" type="decimal" scale="2" required="true" defaultValue="0.3">
+            <validations>
+                <min value="0"/>
+                <max value="1"/>
+            </validations>
+        </field>
+        <field name="priceWeight" type="decimal" scale="2" required="true" defaultValue="0.2">
+            <validations>
+                <min value="0"/>
+                <max value="1"/>
+            </validations>
+        </field>
+        <field name="serviceWeight" type="decimal" scale="2" required="true" defaultValue="0.1">
+            <validations>
+                <min value="0"/>
+                <max value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 采购优化参数 -->
+        <field name="minOrderQuantity" type="integer">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="maxOrderQuantity" type="integer">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        <field name="safetyStockLevel" type="integer">
+            <validations>
+                <min value="0"/>
+            </validations>
+        </field>
+        <field name="economicOrderQuantity" type="integer">
+            <validations>
+                <min value="1"/>
+            </validations>
+        </field>
+        
+        <!-- 系统参数 -->
+        <field name="enableAutomaticPOCreation" type="boolean" defaultValue="false"/>
+        <field name="enableSupplierRating" type="boolean" defaultValue="true"/>
+        <field name="enableProcurementOptimization" type="boolean" defaultValue="true"/>
+        <field name="notificationEmail" type="string" length="255"/>
+        
+        <!-- 审计字段 -->
+        <field name="created" type="dateTime"/>
+        <field name="updated" type="dateTime"/>
+        <field name="version" type="version"/>
+        
+        <views>
+            <view name="form">
+                <field name="defaultLeadTime" label="supplyChain.supplyChainParameter.field.defaultLeadTime"/>
+                <field name="defaultPaymentTerm" label="supplyChain.supplyChainParameter.field.defaultPaymentTerm"/>
+                <field name="defaultCurrency" label="supplyChain.supplyChainParameter.field.defaultCurrency"/>
+                <field name="autoApprovalThreshold" label="supplyChain.supplyChainParameter.field.autoApprovalThreshold"/>
+                <field name="qualityWeight" label="supplyChain.supplyChainParameter.field.qualityWeight"/>
+                <field name="deliveryWeight" label="supplyChain.supplyChainParameter.field.deliveryWeight"/>
+                <field name="priceWeight" label="supplyChain.supplyChainParameter.field.priceWeight"/>
+                <field name="serviceWeight" label="supplyChain.supplyChainParameter.field.serviceWeight"/>
+                <field name="minOrderQuantity" label="supplyChain.supplyChainParameter.field.minOrderQuantity"/>
+                <field name="maxOrderQuantity" label="supplyChain.supplyChainParameter.field.maxOrderQuantity"/>
+                <field name="safetyStockLevel" label="supplyChain.supplyChainParameter.field.safetyStockLevel"/>
+                <field name="economicOrderQuantity" label="supplyChain.supplyChainParameter.field.economicOrderQuantity"/>
+                <field name="enableAutomaticPOCreation" label="supplyChain.supplyChainParameter.field.enableAutomaticPOCreation"/>
+                <field name="enableSupplierRating" label="supplyChain.supplyChainParameter.field.enableSupplierRating"/>
+                <field name="enableProcurementOptimization" label="supplyChain.supplyChainParameter.field.enableProcurementOptimization"/>
+                <field name="notificationEmail" label="supplyChain.supplyChainParameter.field.notificationEmail"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

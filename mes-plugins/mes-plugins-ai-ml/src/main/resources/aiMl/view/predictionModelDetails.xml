@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="predictionModelDetails">
+        <fields>
+            <field name="name" />
+            <field name="description" />
+            <field name="modelType" />
+            <field name="modelFile" />
+            <field name="trainingData" />
+            <field name="accuracy" />
+            <field name="status" />
+            <field name="createdDate" />
+            <field name="lastTrained" />
+            <field name="createdBy" />
+            <field name="parameters" />
+            <field name="isActive" />
+        </fields>
+        <actions>
+            <action name="save" type="save" />
+            <action name="cancel" type="cancel" />
+            <action name="delete" type="delete" />
+            <action name="train" type="button" />
+            <action name="test" type="button" />
+        </actions>
+    </form>
+
+</view>

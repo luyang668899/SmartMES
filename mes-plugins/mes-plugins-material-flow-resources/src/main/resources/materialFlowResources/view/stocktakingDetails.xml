@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ***************************************************************************
+    Copyright (c) 2010 Qcadoo Limited
+    Project: Qcadoo MES
+    Version: 1.4
+
+    This file is part of Qcadoo.
+
+    Qcadoo is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation; either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty
+    of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    ***************************************************************************
+
+-->
+<view defaultAuthorizationRole="ROLE_MATERIAL_FLOW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://schema.qcadoo.org/view"
+      xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd"
+      name="stocktakingDetails" modelName="stocktaking">
+
+    <component type="window" name="window" reference="window">
+        <ribbon>
+            <template name="standardFormTemplate"/>
+            <group name="generate">
+                <bigButton name="generate" icon="generateIcon24.png"
+                           action="#{form}.fireEvent(changeState,02inProgress);" state="disabled"/>
+                <bigButton name="copyFromStock" icon="copyIcon24.png"
+                           action="#{form}.fireEvent(copyFromStock);" state="disabled"/>
+                <bigButton name="settle" icon="iconProducts24.png"
+                           action="#{form}.fireEvent(settle,03finalized);" state="disabled"/>
+            </group>
+            <group name="print">
+                <bigButton name="print" icon="pdfIcon24.png"
+                           action="#{form}.fireEvent(print);" state="disabled"/>
+            </group>
+            <group name="state">
+                <smallButton name="reject" icon="deleteIcon16.png" state="disabled">
+                    <script>
+                        <![CDATA[
+							this.addOnChangeListener({
+								onClick: function() {
+								    if (window.confirm("#{translate(materialFlowResources.stocktakingDetails.window.ribbon.state.rejectStocktaking.confirm)}")) {
+                                        #{form}.performEvent('changeState', ["05rejected"]);
+                                    }
+								}
+							});
+						]]>
+                    </script>
+                </smallButton>
+                <smallButton name="finish" icon="acceptIcon16.png" state="disabled">
+                    <script>
+                        <![CDATA[
+							this.addOnChangeListener({
+								onClick: function() {
+								    if (window.confirm("#{translate(materialFlowResources.stocktakingDetails.window.ribbon.state.finishStocktaking.confirm)}")) {
+                                        #{form}.performEvent('changeState', ["04finished"]);
+                                    }
+								}
+							});
+						]]>
+                    </script>
+                </smallButton>
+            </group>
+            <group name="prices">
+                <bigButton name="fillPrices" icon="genealogyIcon24.png" state="disabled">
+                    <script>
+                        <![CDATA[
+                            this.addOnChangeListener({
+                                onClick: function() {
+                                    if(window.canClose()) {
+                                        #{form}.performEvent('fillPrices', []);
+                                    }
+                                }
+                            });
+                        ]]>
+                    </script>
+                </bigButton>
+            </group>
+        </ribbon>
+
+        <windowTab name="mainTab" reference="mainTab">
+            <component type="form" name="form" reference="form">
+                <script>
+                    <![CDATA[
+                        var generateRibbonItem =  #{window}.getRibbonItem("generate.generate");
+                        var copyFromStockRibbonItem =  #{window}.getRibbonItem("generate.copyFromStock");
+                        var settleRibbonItem =  #{window}.getRibbonItem("generate.settle");
+                        var printRibbonItem = #{window}.getRibbonItem("print.print");
+                        var rejectRibbonItem = #{window}.getRibbonItem("state.reject");
+                        var finishRibbonItem = #{window}.getRibbonItem("state.finish");
+                        var saveRibbonItem = #{window}.getRibbonItem("actions.save");
+                        var saveBackRibbonItem = #{window}.getRibbonItem("actions.saveBack");
+                        var saveNewRibbonItem = #{window}.getRibbonItem("actions.saveNew");
+                        var cancelRibbonItem = #{window}.getRibbonItem("actions.cancel");
+                        var deleteRibbonItem = #{window}.getRibbonItem("actions.delete");
+
+                        this.addOnChangeListener({
+                            onSetValue: function(value) {
+                                var state = #{state}.getValue().content.value;
+                                if (!state || !value || !value.content) {
+                                    return;
+                                }
+
+                                if (!value.content.entityId) {
+                                    generateRibbonItem.disable();
+                                    rejectRibbonItem.disable();
+                                    return;
+                                }
+
+                                if (state != "01draft") {
+                                    saveRibbonItem.disable();
+                                    saveBackRibbonItem.disable();
+                                    saveNewRibbonItem.disable();
+                                    cancelRibbonItem.disable();
+                                    deleteRibbonItem.disable();
+                                } else {
+                                    saveRibbonItem.enable();
+                                    saveBackRibbonItem.enable();
+                                    saveNewRibbonItem.enable();
+                                    cancelRibbonItem.enable();
+                                    deleteRibbonItem.enable();
+                                }
+
+                                if (state == "01draft") {
+                                    generateRibbonItem.enable();
+                                    copyFromStockRibbonItem.disable();
+                                    settleRibbonItem.disable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.settle)}");
+                                    printRibbonItem.disable();
+                                    rejectRibbonItem.enable();
+                                    finishRibbonItem.disable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.finish)}");
+                                } else if (state == "02inProgress") {
+                                    generateRibbonItem.disable();
+                                    printRibbonItem.enable();
+                                    finishRibbonItem.disable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.finish)}");
+                                    copyFromStockRibbonItem.enable();
+                                    settleRibbonItem.enable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.settle)}");
+                                    rejectRibbonItem.enable();
+                                } else if (state == "03finalized") {
+                                    generateRibbonItem.disable();
+                                    copyFromStockRibbonItem.disable();
+                                    settleRibbonItem.enable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.settle)}");
+                                    printRibbonItem.enable();
+                                    rejectRibbonItem.enable();
+                                    finishRibbonItem.enable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.finish)}");
+                                } else if (state == "04finished") {
+                                    generateRibbonItem.disable();
+                                    copyFromStockRibbonItem.disable();
+                                    settleRibbonItem.disable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.settle)}");
+                                    printRibbonItem.enable();
+                                    rejectRibbonItem.disable();
+                                    finishRibbonItem.disable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.finish)}");
+                                } else {
+                                    generateRibbonItem.disable();
+                                    copyFromStockRibbonItem.disable();
+                                    settleRibbonItem.disable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.settle)}");
+                                    printRibbonItem.enable();
+                                    rejectRibbonItem.disable();
+                                    finishRibbonItem.disable("#{translate(materialFlowResources.stocktakingDetails.ribbon.message.finish)}");
+                                }
+                            }
+                        });
+					]]>
+                </script>
+
+                <component type="gridLayout" name="stocktakingGridLayout"
+                           hasBorders="false" columns="2" rows="10">
+                    <layoutElement row="1" column="1">
+                        <component type="hidden" name="wms" field="wms" reference="wms"/>
+                        <component type="input" name="number" reference="number" field="#{form}.number"
+                                   defaultEnabled="never"/>
+                    </layoutElement>
+                    <layoutElement row="2" column="1">
+                        <component type="calendar" name="stocktakingDate" reference="stocktakingDate"
+                                   field="#{form}.stocktakingDate"/>
+                    </layoutElement>
+                    <layoutElement row="3" column="1">
+                        <component type="select" name="category" reference="category" field="#{form}.category"/>
+                    </layoutElement>
+                    <layoutElement row="4" column="1">
+                        <component type="select" name="state" field="#{form}.state" reference="state" defaultEnabled="never"/>
+                    </layoutElement>
+                    <layoutElement column="2" row="1">
+                        <component type="lookup" name="location" field="location"
+                                   reference="location">
+                            <option type="column" name="name" fields="name"/>
+
+                            <option type="searchable" value="number,name"/>
+                            <option type="orderable" value="number,name"/>
+
+                            <option type="expression" value="#number + ' - ' + #name"/>
+                            <option type="fieldCode" value="number"/>
+
+                            <criteriaModifier
+                                    class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.LocationCriteriaModifiersMFR"
+                                    method="showWarehousesOnly"/>
+                        </component>
+                    </layoutElement>
+                    <layoutElement row="2" column="2">
+                        <component type="select" name="storageLocationMode" reference="storageLocationMode"
+                                   field="#{form}.storageLocationMode">
+                        </component>
+                    </layoutElement>
+                    <layoutElement column="2" row="3" height="2">
+                        <component type="textarea" name="description" field="description"/>
+                    </layoutElement>
+                    <layoutElement column="1" row="5" height="6" width="2">
+                        <component type="lookup" name="storageLocationLookup" reference="storageLocationLookup"
+                                   field="#{form}.storageLocations"
+                                   defaultVisible="false" persistent="false" hasLabel="false">
+                            <option type="expression" value="#number"/>
+                            <option type="fieldCode" value="number"/>
+                            <option type="multiselect" value="true"/>
+
+                            <option type="searchable" value="number"/>
+                            <option type="orderable" value="number"/>
+
+                            <criteriaModifier
+                                    class="com.qcadoo.mes.materialFlowResources.criteriaModifiers.StorageLocationCriteriaModifiers"
+                                    method="showStorageLocationsForLocation"/>
+                        </component>
+                        <component type="grid" name="storageLocations" reference="storageLocations"
+                                   source="#{form}.storageLocations" defaultEnabled="false">
+                            <option type="column" name="number" fields="number"/>
+
+                            <option type="searchable" value="number"/>
+                            <option type="orderable" value="number"/>
+
+                            <option type="order" column="number" direction="asc"/>
+
+                            <option type="fullscreen" value="true"/>
+                            <option type="multiselect" value="true"/>
+                            <option type="creatable" value="true"/>
+                            <option type="deletable" value="true"/>
+
+                            <option type="weakRelation" value="true"/>
+                            <option type="correspondingLookup" value="storageLocationLookup"/>
+                        </component>
+                    </layoutElement>
+                </component>
+
+                <option type="header" value="true"/>
+                <option type="expression" value="#number"/>
+
+                <listener event="copyFromStock"
+                          class="com.qcadoo.mes.materialFlowResources.listeners.StocktakingDetailsListeners"
+                          method="copyFromStock"/>
+                <listener event="settle"
+                          class="com.qcadoo.mes.materialFlowResources.listeners.StocktakingDetailsListeners"
+                          method="settle"/>
+                <listener event="print"
+                          class="com.qcadoo.mes.materialFlowResources.listeners.StocktakingDetailsListeners"
+                          method="print"/>
+                <listener event="changeState"
+                          class="com.qcadoo.mes.materialFlowResources.listeners.StocktakingDetailsListeners"
+                          method="changeState"/>
+                <listener event="fillPrices"
+                          class="com.qcadoo.mes.materialFlowResources.listeners.StocktakingDetailsListeners"
+                          method="fillPrices"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="positionsTab" reference="positionsTab">
+            <component type="grid" name="positions" source="#{form}.positions"
+                       reference="positions">
+                <option type="column" name="storageLocation" fields="storageLocation" expression="#storageLocation['number']"/>
+                <option type="column" name="palletNumber" fields="palletNumber" expression="#palletNumber['number']" width="30"/>
+                <option type="column" name="typeOfLoadUnit" fields="typeOfLoadUnit" expression="#typeOfLoadUnit['name']"
+                        width="50"/>
+                <option type="column" name="productNumber" fields="product" expression="#product['number']" link="true"/>
+                <option type="column" name="productName" fields="product" expression="#product['name']" link="true"/>
+                <option type="column" name="batch" fields="batch" expression="#batch['number']" width="30"/>
+                <option type="column" name="expirationDate" fields="expirationDate"/>
+                <option type="column" name="unit" fields="product" expression="#product['unit']" width="30"/>
+                <option type="column" name="additionalUnit" fields="product" expression="#product['additionalUnit'] != null ? #product['additionalUnit'] : #product['unit']" width="30"/>
+                <option type="column" name="conversion" fields="conversion" width="80"/>
+                <option type="column" name="stock" fields="stock" width="80"/>
+                <option type="column" name="quantity" fields="quantity" width="80"/>
+                <option type="column" name="quantityInAdditionalUnit" fields="quantityInAdditionalUnit" width="80"/>
+
+                <option type="order" column="storageLocation" direction="asc"/>
+
+                <option type="searchable"
+                        value="storageLocation,palletNumber,typeOfLoadUnit,productNumber,productName,batch,expirationDate,unit,stock,quantity,quantityInAdditionalUnit,conversion"/>
+                <option type="orderable"
+                        value="storageLocation,palletNumber,typeOfLoadUnit,productNumber,productName,batch,expirationDate,unit,stock,quantity,quantityInAdditionalUnit,conversion"/>
+
+                <option type="correspondingView" value="materialFlowResources/stocktakingPositionDetails"/>
+                <option type="correspondingComponent" value="form"/>
+
+                <option type="creatable" value="true"/>
+                <option type="deletable" value="true"/>
+                <option type="fullscreen" value="true"/>
+                <option type="multiselect" value="true"/>
+                <option type="fixedHeight" value="true"/>
+            </component>
+        </windowTab>
+
+        <windowTab name="differencesTab" reference="differencesTab">
+            <component type="grid" name="differences" source="#{form}.differences"
+                       reference="differences">
+                <script>
+                    <![CDATA[
+                            var fillPrices = #{window}.getRibbonItem("prices.fillPrices");
+
+                            var listener = {
+                                onChange: function(selectedEntitiesArray) {
+                                    var state = #{state}.getValue().content.value;
+                                    var enabled = selectedEntitiesArray.length > 0;
+                                    for (var i in selectedEntitiesArray) {
+                                        if (selectedEntitiesArray[i].fields.type == '01shortage') {
+                                            enabled = false;
+                                            break;
+                                        }
+                                    }
+                                    if(state != "04finished" && state != "05rejected" && enabled) {
+                                        fillPrices.enable("#{translate(materialFlowResources.stocktakingDetails.window.ribbon.prices.fillPrices.description)}");
+                                    } else {
+                                        fillPrices.disable("#{translate(materialFlowResources.stocktakingDetails.window.ribbon.prices.fillPrices.description)}");
+                                    }
+                                }
+                            }
+                            this.addOnChangeListener(listener);
+                        ]]>
+                </script>
+                <option type="column" name="storageLocation" fields="storageLocation" expression="#storageLocation['number']" link="true"/>
+                <option type="column" name="palletNumber" fields="palletNumber" expression="#palletNumber['number']" link="true" width="30"/>
+                <option type="column" name="typeOfLoadUnit" fields="typeOfLoadUnit" expression="#typeOfLoadUnit['name']" link="true"
+                        width="50"/>
+                <option type="column" name="productNumber" fields="product" expression="#product['number']" link="true"/>
+                <option type="column" name="productName" fields="product" expression="#product['name']" link="true"/>
+                <option type="column" name="batch" fields="batch" expression="#batch['number']" width="30"/>
+                <option type="column" name="expirationDate" fields="expirationDate"/>
+                <option type="column" name="type" fields="type"/>
+                <option type="column" name="quantity" fields="quantity" width="80"/>
+                <option type="column" name="quantityInAdditionalUnit" fields="quantityInAdditionalUnit" width="80"/>
+                <option type="column" name="unit" fields="product" expression="#product['unit']" width="30"/>
+                <option type="column" name="additionalUnit" fields="product" expression="#product['additionalUnit'] != null ? #product['additionalUnit'] : #product['unit']" width="30"/>
+                <option type="column" name="conversion" fields="conversion" width="80"/>
+                <option type="column" name="price" fields="price"/>
+                <option type="column" name="description" fields="description"/>
+
+                <option type="order" column="storageLocation" direction="asc"/>
+
+                <option type="searchable"
+                        value="storageLocation,palletNumber,typeOfLoadUnit,productNumber,productName,batch,expirationDate,type,quantity,quantityInAdditionalUnit,conversion,unit,price,description"/>
+                <option type="orderable"
+                        value="storageLocation,palletNumber,typeOfLoadUnit,productNumber,productName,batch,expirationDate,type,quantity,quantityInAdditionalUnit,conversion,unit,price,description"/>
+
+                <option type="correspondingView" value="materialFlowResources/stocktakingDifferenceDetails"/>
+                <option type="correspondingComponent" value="form"/>
+
+                <option type="fullscreen" value="true"/>
+                <option type="multiselect" value="true"/>
+                <option type="fixedHeight" value="true"/>
+            </component>
+        </windowTab>
+    </component>
+
+    <hooks>
+        <beforeRender class="com.qcadoo.mes.materialFlowResources.hooks.StocktakingDetailsHooks"
+                      method="onBeforeRender"/>
+    </hooks>
+</view>

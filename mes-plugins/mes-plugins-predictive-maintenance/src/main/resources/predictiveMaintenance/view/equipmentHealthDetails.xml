@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://www.qcadoo.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.qcadoo.com/model view.xsd">
+    <page>
+        <title>Equipment Health Details</title>
+        <form name="equipmentHealthForm" entity="predictiveMaintenance.equipmentHealth">
+            <fields>
+                <field name="equipment" type="manyToOne" required="true"/>
+                <field name="healthScore" type="decimal" required="true"/>
+                <field name="status" type="string" required="true"/>
+                <field name="lastMeasurement" type="dateTime" required="true"/>
+                <field name="nextPredictedFailure" type="dateTime"/>
+                <field name="failureProbability" type="decimal" required="true"/>
+                <field name="maintenancePriority" type="integer" required="true"/>
+                <field name="notes" type="text"/>
+            </fields>
+            <tabs>
+                <tab name="measurements" title="Measurements">
+                    <grid name="measurementsGrid" entity="predictiveMaintenance.equipmentMeasurement" filter="equipmentHealth.id = {id}">
+                        <columns>
+                            <column name="timestamp" type="dateTime" width="150"/>
+                            <column name="sensorType" type="string" width="150"/>
+                            <column name="value" type="decimal" width="100"/>
+                            <column name="unit" type="string" width="100"/>
+                            <column name="isAnomaly" type="boolean" width="100"/>
+                        </columns>
+                        <actions>
+                            <action name="view" type="navigate" url="/page/predictiveMaintenance/equipmentMeasurementDetails.html?recordId={id}"/>
+                            <action name="add" type="navigate" url="/page/predictiveMaintenance/equipmentMeasurementDetails.html?equipmentHealthId={id}"/>
+                            <action name="delete" type="delete"/>
+                        </actions>
+                        <sorts>
+                            <sort name="timestamp" direction="desc"/>
+                        </sorts>
+                    </grid>
+                </tab>
+                <tab name="maintenanceSchedules" title="Maintenance Schedules">
+                    <grid name="maintenanceSchedulesGrid" entity="predictiveMaintenance.maintenanceSchedule" filter="equipmentHealth.id = {id}">
+                        <columns>
+                            <column name="scheduleType" type="string" width="150"/>
+                            <column name="scheduledDate" type="dateTime" width="150"/>
+                            <column name="estimatedDuration" type="integer" width="100"/>
+                            <column name="status" type="string" width="100"/>
+                            <column name="priority" type="integer" width="100"/>
+                        </columns>
+                        <actions>
+                            <action name="view" type="navigate" url="/page/predictiveMaintenance/maintenanceScheduleDetails.html?recordId={id}"/>
+                            <action name="add" type="navigate" url="/page/predictiveMaintenance/maintenanceScheduleDetails.html?equipmentHealthId={id}"/>
+                        </actions>
+                        <sorts>
+                            <sort name="scheduledDate" direction="asc"/>
+                            <sort name="priority" direction="desc"/>
+                        </sorts>
+                    </grid>
+                </tab>
+            </tabs>
+            <actions>
+                <action name="save" type="save"/>
+                <action name="cancel" type="navigate" url="/page/predictiveMaintenance/equipmentHealthList.html"/>
+            </actions>
+        </form>
+    </page>
+</view>

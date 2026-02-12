@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="enableEnergyManagement" type="boolean" required="true" default="true"/>
+        <field name="enableEnergyMeters" type="boolean" required="true" default="true"/>
+        <field name="enableEnergyConsumptionTracking" type="boolean" required="true" default="true"/>
+        <field name="enableEnergyTariffs" type="boolean" required="true" default="true"/>
+        <field name="enableEnergyReports" type="boolean" required="true" default="true"/>
+        <field name="enableRealTimeMonitoring" type="boolean" default="false"/>
+        <field name="enableAnomalyDetection" type="boolean" default="false"/>
+        <field name="enableEnergyOptimization" type="boolean" default="false"/>
+        <field name="enableCarbonFootprintCalculation" type="boolean" default="false"/>
+        <field name="dataCollectionInterval" type="integer" default="60"/>
+        <field name="reportGenerationInterval" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Daily</list>
+                    <list>Weekly</list>
+                    <list>Monthly</list>
+                    <list>Quarterly</list>
+                    <list>Annual</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="defaultCurrency" type="string" required="true" default="USD"/>
+        <field name="defaultElectricityUnit" type="string" required="true" default="kWh"/>
+        <field name="defaultGasUnit" type="string" required="true" default="M3"/>
+        <field name="defaultWaterUnit" type="string" required="true" default="M3"/>
+        <field name="defaultSteamUnit" type="string" required="true" default="kg"/>
+        <field name="defaultCompressedAirUnit" type="string" required="true" default="Nm3"/>
+        <field name="maxHistoricalDataMonths" type="integer" default="24"/>
+        <field name="alertThreshold" type="decimal" default="10.0"/>
+        <field name="anomalyDetectionThreshold" type="decimal" default="0.95"/>
+        <field name="enableEmailNotifications" type="boolean" default="false"/>
+        <field name="notificationEmail" type="string"/>
+        <field name="apiKey" type="string"/>
+        <field name="apiUrl" type="string"/>
+        <field name="debugMode" type="boolean" default="false"/>
+        <field name="notes" type="text"/>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="enableEnergyManagement"/>
+            <field name="enableEnergyMeters"/>
+            <field name="enableEnergyConsumptionTracking"/>
+            <field name="enableEnergyReports"/>
+            <field name="enableRealTimeMonitoring"/>
+        </view>
+        <view name="form">
+            <field name="enableEnergyManagement"/>
+            <field name="enableEnergyMeters"/>
+            <field name="enableEnergyConsumptionTracking"/>
+            <field name="enableEnergyTariffs"/>
+            <field name="enableEnergyReports"/>
+            <field name="enableRealTimeMonitoring"/>
+            <field name="enableAnomalyDetection"/>
+            <field name="enableEnergyOptimization"/>
+            <field name="enableCarbonFootprintCalculation"/>
+            <field name="dataCollectionInterval"/>
+            <field name="reportGenerationInterval"/>
+            <field name="defaultCurrency"/>
+            <field name="defaultElectricityUnit"/>
+            <field name="defaultGasUnit"/>
+            <field name="defaultWaterUnit"/>
+            <field name="defaultSteamUnit"/>
+            <field name="defaultCompressedAirUnit"/>
+            <field name="maxHistoricalDataMonths"/>
+            <field name="alertThreshold"/>
+            <field name="anomalyDetectionThreshold"/>
+            <field name="enableEmailNotifications"/>
+            <field name="notificationEmail"/>
+            <field name="apiKey"/>
+            <field name="apiUrl"/>
+            <field name="debugMode"/>
+            <field name="notes"/>
+        </view>
+    </views>
+
+</model>

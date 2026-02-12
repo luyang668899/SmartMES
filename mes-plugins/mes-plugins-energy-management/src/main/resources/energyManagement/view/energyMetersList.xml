@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="energyMetersListGrid">
+        <fields>
+            <field name="name"/>
+            <field name="meterId"/>
+            <field name="meterType"/>
+            <field name="location"/>
+            <field name="status"/>
+            <field name="lastReading"/>
+            <field name="lastReadingDate"/>
+            <field name="unit"/>
+            <field name="communicationProtocol"/>
+        </fields>
+        <actions>
+            <action name="view" type="view"/>
+            <action name="edit" type="edit"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </grid>
+
+    <form name="energyMetersListForm">
+        <fields>
+            <field name="name" type="text"/>
+            <field name="meterId" type="text"/>
+            <field name="meterType" type="select"/>
+            <field name="location" type="text"/>
+            <field name="status" type="select"/>
+            <field name="communicationProtocol" type="select"/>
+        </fields>
+        <actions>
+            <action name="search" type="search"/>
+            <action name="reset" type="reset"/>
+            <action name="add" type="add"/>
+        </actions>
+    </form>
+
+</view>

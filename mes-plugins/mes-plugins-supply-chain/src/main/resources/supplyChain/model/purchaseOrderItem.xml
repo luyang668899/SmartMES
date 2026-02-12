@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="purchaseOrder" type="manyToOne" model="purchaseOrder" required="true"/>
+
+        <field name="product" type="manyToOne" model="product" plugin="basic" required="true"/>
+
+        <field name="supplierProduct" type="manyToOne" model="supplierProduct"/>
+
+        <field name="quantity" type="decimal" required="true">
+            <validation>
+                <rule type="min">
+                    <parameter name="value">0.0001</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="unit" type="manyToOne" model="unit" plugin="basic" required="true"/>
+
+        <field name="unitPrice" type="decimal" required="true">
+            <validation>
+                <rule type="min">
+                    <parameter name="value">0.0001</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="totalPrice" type="decimal" required="true">
+            <validation>
+                <rule type="min">
+                    <parameter name="value">0.0001</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="taxRate" type="decimal"/>
+
+        <field name="taxAmount" type="decimal"/>
+
+        <field name="discountRate" type="decimal"/>
+
+        <field name="discountAmount" type="decimal"/>
+
+        <field name="description" type="text"/>
+
+        <field name="notes" type="text"/>
+
+        <field name="deliveryDate" type="date"/>
+
+        <field name="status" type="string">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">PENDING,DELIVERED,PARTIALLY_DELIVERED,CANCELLED</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="deliveredQuantity" type="decimal" default="0"/>
+
+        <field name="backorderQuantity" type="decimal" default="0"/>
+
+        <field name="relatedProductionOrderItem" type="manyToOne" model="orderProduct" plugin="orders"/>
+
+        <field name="priority" type="string">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">Low,Medium,High,Urgent</parameter>
+                </rule>
+            </validation>
+        </field>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="purchaseOrder"/>
+            <field name="product"/>
+            <field name="quantity"/>
+            <field name="unit"/>
+            <field name="unitPrice"/>
+            <field name="totalPrice"/>
+            <field name="status"/>
+        </view>
+
+        <view name="form">
+            <field name="purchaseOrder"/>
+            <field name="product"/>
+            <field name="supplierProduct"/>
+            <field name="quantity"/>
+            <field name="unit"/>
+            <field name="unitPrice"/>
+            <field name="totalPrice"/>
+            <field name="taxRate"/>
+            <field name="taxAmount"/>
+            <field name="discountRate"/>
+            <field name="discountAmount"/>
+            <field name="description"/>
+            <field name="notes"/>
+            <field name="deliveryDate"/>
+            <field name="status"/>
+            <field name="deliveredQuantity"/>
+            <field name="backorderQuantity"/>
+            <field name="relatedProductionOrderItem"/>
+            <field name="priority"/>
+        </view>
+
+    </views>
+
+</model>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <grid name="mobileDevicesListGrid">
+        <fields>
+            <field name="name"/>
+            <field name="deviceId"/>
+            <field name="deviceType"/>
+            <field name="osVersion"/>
+            <field name="appVersion"/>
+            <field name="lastConnected"/>
+            <field name="status"/>
+            <field name="assignedTo"/>
+            <field name="location"/>
+        </fields>
+        <actions>
+            <action name="view" type="view"/>
+            <action name="edit" type="edit"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </grid>
+
+    <form name="mobileDevicesListForm">
+        <fields>
+            <field name="name" type="text"/>
+            <field name="deviceId" type="text"/>
+            <field name="deviceType" type="select"/>
+            <field name="status" type="select"/>
+            <field name="assignedTo" type="text"/>
+            <field name="location" type="text"/>
+        </fields>
+        <actions>
+            <action name="search" type="search"/>
+            <action name="reset" type="reset"/>
+            <action name="add" type="add"/>
+        </actions>
+    </form>
+
+</view>

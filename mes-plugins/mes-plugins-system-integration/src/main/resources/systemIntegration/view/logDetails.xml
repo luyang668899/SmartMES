@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="logDetails">
+        <fields>
+            <field name="timestamp" />
+            <field name="connection" />
+            <field name="messageType" />
+            <field name="status" />
+            <field name="message" />
+            <field name="details" />
+            <field name="requestData" />
+            <field name="responseData" />
+        </fields>
+        <actions>
+            <action name="cancel" type="cancel" />
+            <action name="delete" type="delete" />
+        </actions>
+    </form>
+
+</view>

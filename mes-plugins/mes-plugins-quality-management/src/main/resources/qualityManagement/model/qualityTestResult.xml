@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <number name="number" type="string" required="true" unique="true">
+            <message>
+                <key>qualityManagement.qualityTestResult.number.error.empty</key>
+                <message>Number cannot be empty</message>
+            </message>
+        </number>
+
+        <field name="qualityTest" type="manyToOne" model="qualityTest" required="true"/>
+
+        <field name="qualityControl" type="manyToOne" model="qualityControl"/>
+
+        <field name="productionOrder" type="manyToOne" model="order" plugin="orders" required="true"/>
+
+        <field name="product" type="manyToOne" model="product" plugin="basic" required="true"/>
+
+        <field name="batchNumber" type="string"/>
+
+        <field name="testDate" type="dateTime" required="true" default="now"/>
+
+        <field name="testedBy" type="manyToOne" model="staff" plugin="basic" required="true"/>
+
+        <field name="shift" type="manyToOne" model="shift" plugin="basic"/>
+
+        <field name="workstation" type="manyToOne" model="workstation" plugin="basic"/>
+
+        <field name="machine" type="manyToOne" model="equipment" plugin="equipmentConnection"/>
+
+        <field name="sampleSize" type="integer" required="true"/>
+
+        <field name="passedCount" type="integer" default="0"/>
+
+        <field name="failedCount" type="integer" default="0"/>
+
+        <field name="testResult" type="string" required="true">
+            <validation>
+                <rule type="inSet">
+                    <parameter name="set">PASSED,FAILED,INCONCLUSIVE</parameter>
+                </rule>
+            </validation>
+        </field>
+
+        <field name="testData" type="text"/>
+
+        <field name="comments" type="text"/>
+
+        <field name="attachments" type="text"/>
+
+        <field name="duration" type="integer"/>
+
+        <field name="nextTestDate" type="date"/>
+
+    </fields>
+
+    <views>
+        <view name="tree">
+            <field name="number"/>
+            <field name="qualityTest"/>
+            <field name="productionOrder"/>
+            <field name="product"/>
+            <field name="testDate"/>
+            <field name="testResult"/>
+        </view>
+
+        <view name="form">
+            <field name="number"/>
+            <field name="qualityTest"/>
+            <field name="qualityControl"/>
+            <field name="productionOrder"/>
+            <field name="product"/>
+            <field name="batchNumber"/>
+            <field name="testDate"/>
+            <field name="testedBy"/>
+            <field name="shift"/>
+            <field name="workstation"/>
+            <field name="machine"/>
+            <field name="sampleSize"/>
+            <field name="passedCount"/>
+            <field name="failedCount"/>
+            <field name="testResult"/>
+            <field name="testData"/>
+            <field name="comments"/>
+            <field name="attachments"/>
+            <field name="duration"/>
+            <field name="nextTestDate"/>
+        </view>
+
+    </views>
+
+</model>

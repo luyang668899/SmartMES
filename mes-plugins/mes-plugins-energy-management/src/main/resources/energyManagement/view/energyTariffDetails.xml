@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://schema.qcadoo.org/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/view http://schema.qcadoo.org/view.xsd">
+
+    <form name="energyTariffDetailsForm">
+        <fields>
+            <field name="name" type="text" required="true"/>
+            <field name="tariffId" type="text" required="true"/>
+            <field name="energyType" type="select" required="true">
+                <option>Electricity</option>
+                <option>Gas</option>
+                <option>Water</option>
+                <option>Steam</option>
+                <option>Compressed Air</option>
+            </field>
+            <field name="startDate" type="date" required="true"/>
+            <field name="endDate" type="date"/>
+            <field name="unitPrice" type="decimal" required="true"/>
+            <field name="currency" type="text" required="true"/>
+            <field name="unit" type="select" required="true">
+                <option>kWh</option>
+                <option>M3</option>
+                <option>L</option>
+                <option>kg</option>
+                <option>Nm3</option>
+            </field>
+            <field name="tariffType" type="select">
+                <option>Fixed</option>
+                <option>Variable</option>
+                <option>Time-of-Use</option>
+                <option>Seasonal</option>
+                <option>Peak</option>
+                <option>Off-Peak</option>
+            </field>
+            <field name="peakPrice" type="decimal"/>
+            <field name="offPeakPrice" type="decimal"/>
+            <field name="shoulderPrice" type="decimal"/>
+            <field name="peakStartTime" type="time"/>
+            <field name="peakEndTime" type="time"/>
+            <field name="offPeakStartTime" type="time"/>
+            <field name="offPeakEndTime" type="time"/>
+            <field name="shoulderStartTime" type="time"/>
+            <field name="shoulderEndTime" type="time"/>
+            <field name="VAT" type="decimal"/>
+            <field name="fixedCharge" type="decimal"/>
+            <field name="fixedChargeUnit" type="select">
+                <option>Day</option>
+                <option>Month</option>
+                <option>Quarter</option>
+                <option>Year</option>
+            </field>
+            <field name="provider" type="text"/>
+            <field name="contractNumber" type="text"/>
+            <field name="status" type="select" required="true">
+                <option>Active</option>
+                <option>Inactive</option>
+                <option>Future</option>
+                <option>Expired</option>
+            </field>
+            <field name="notes" type="textarea"/>
+        </fields>
+        <actions>
+            <action name="save" type="save"/>
+            <action name="cancel" type="cancel"/>
+            <action name="delete" type="delete"/>
+        </actions>
+    </form>
+
+</view>

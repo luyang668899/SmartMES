@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://schema.qcadoo.org/model.xsd">
+
+    <entity name="integrationLog" package="systemIntegration">
+        <field name="id" type="id"/>
+        <field name="connection" type="manyToOne" manyToOne="integrationConnection"/>
+        <field name="mapping" type="manyToOne" manyToOne="integrationMapping"/>
+        <field name="logLevel" type="string" length="50" required="true">
+            <constraints>
+                <not-empty/>
+                <in-list>
+                    <value>INFO</value>
+                    <value>WARN</value>
+                    <value>ERROR</value>
+                    <value>DEBUG</value>
+                </in-list>
+            </constraints>
+        </field>
+        <field name="message" type="string" length="4000" required="true"/>
+        <field name="details" type="string" length="4000"/>
+        <field name="requestData" type="string" length="4000"/>
+        <field name="responseData" type="string" length="4000"/>
+        <field name="duration" type="integer"/>
+        <field name="success" type="boolean" defaultValue="false"/>
+        <field name="timestamp" type="dateTime" required="true"/>
+        
+        <views>
+            <view name="form">
+                <field name="connection"/>
+                <field name="mapping"/>
+                <field name="logLevel"/>
+                <field name="message"/>
+                <field name="details"/>
+                <field name="requestData"/>
+                <field name="responseData"/>
+                <field name="duration"/>
+                <field name="success"/>
+                <field name="timestamp"/>
+            </view>
+        </views>
+    </entity>
+
+</model>

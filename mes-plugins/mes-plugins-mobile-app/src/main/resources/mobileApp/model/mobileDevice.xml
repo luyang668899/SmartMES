@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://schema.qcadoo.org/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.qcadoo.org/model http://schema.qcadoo.org/model.xsd">
+
+    <fields>
+        <field name="name" type="string" required="true"/>
+        <field name="deviceId" type="string" required="true" unique="true"/>
+        <field name="deviceType" type="string" required="true">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>iOS</list>
+                    <list>Android</list>
+                    <list>Windows</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="osVersion" type="string"/>
+        <field name="appVersion" type="string"/>
+        <field name="lastConnected" type="dateTime"/>
+        <field name="status" type="string">
+            <constraints>
+                <notEmpty/>
+                <inList>
+                    <list>Active</list>
+                    <list>Inactive</list>
+                    <list>Offline</list>
+                </inList>
+            </constraints>
+        </field>
+        <field name="assignedTo" type="string"/>
+        <field name="location" type="string"/>
+        <field name="notes" type="text"/>
+    </fields>
+
+    <views>
+        <view name="list">
+            <field name="name"/>
+            <field name="deviceId"/>
+            <field name="deviceType"/>
+            <field name="status"/>
+            <field name="lastConnected"/>
+        </view>
+        <view name="form">
+            <field name="name"/>
+            <field name="deviceId"/>
+            <field name="deviceType"/>
+            <field name="osVersion"/>
+            <field name="appVersion"/>
+            <field name="lastConnected"/>
+            <field name="status"/>
+            <field name="assignedTo"/>
+            <field name="location"/>
+            <field name="notes"/>
+        </view>
+    </views>
+
+</model>
